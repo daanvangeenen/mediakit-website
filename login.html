@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inloggen — Strik Patisserie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-body">
+  <div class="login-shell">
+    <!-- LEFT: brand -->
+    <aside class="login-brand">
+      <div class="login-brand-inner">
+        <div class="login-crown">
+          <svg viewBox="0 0 32 24" width="44" height="34" aria-hidden="true">
+            <path d="M2 22 L6 6 L12 14 L16 4 L20 14 L26 6 L30 22 Z" fill="none" stroke="#f5d6b2" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="6" cy="5" r="1.4" fill="#f5d6b2"/>
+            <circle cx="16" cy="3" r="1.6" fill="#f5d6b2"/>
+            <circle cx="26" cy="5" r="1.4" fill="#f5d6b2"/>
+          </svg>
+        </div>
+        <div class="login-brand-name">STRIK</div>
+        <div class="login-brand-sub">PATISSERIE</div>
+
+        <p class="login-tagline">
+          Inzicht in je winkelprestaties.<br/>
+          Slimmer ondernemen, beter bakken.
+        </p>
+      </div>
+      <div class="login-brand-footer">© Strik Patisserie</div>
+    </aside>
+
+    <!-- RIGHT: form -->
+    <main class="login-main">
+      <div class="login-card">
+        <h1 class="login-title">Welkom terug</h1>
+        <p class="login-sub">Log in om je dashboard te bekijken.</p>
+
+        <form id="loginForm" class="login-form" novalidate>
+          <label class="login-field">
+            <span class="login-label">E-mailadres</span>
+            <input
+              type="email"
+              id="email"
+              autocomplete="username"
+              placeholder="naam@bakkerij.nl"
+              required
+            />
+          </label>
+
+          <label class="login-field">
+            <span class="login-label">Wachtwoord</span>
+            <input
+              type="password"
+              id="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              required
+            />
+          </label>
+
+          <div class="login-error" id="loginError" role="alert"></div>
+
+          <button type="submit" class="login-btn">Inloggen</button>
+
+          <a href="#" class="login-forgot">Wachtwoord vergeten?</a>
+        </form>
+
+        <div class="login-hint">
+          <strong>Demo-toegang:</strong>
+          <code>daan@software.nl</code> / <code>daan123</code>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

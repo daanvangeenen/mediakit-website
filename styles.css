@@ -1,3 +1,173 @@
+/* ===== Login screen ===== */
+.login-body {
+  margin: 0;
+  background: var(--cream);
+  min-height: 100vh;
+}
+.login-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 100vh;
+}
+.login-brand {
+  background: var(--wine);
+  color: #f5d6b2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  overflow: hidden;
+}
+.login-brand::before {
+  content: '';
+  position: absolute;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(245, 214, 178, 0.08) 0%, transparent 60%);
+  top: -120px; right: -160px;
+  border-radius: 50%;
+}
+.login-brand::after {
+  content: '';
+  position: absolute;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(245, 214, 178, 0.05) 0%, transparent 60%);
+  bottom: -100px; left: -80px;
+  border-radius: 50%;
+}
+.login-brand-inner { position: relative; z-index: 1; max-width: 400px; }
+.login-crown { margin-bottom: 12px; }
+.login-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  letter-spacing: 8px;
+  color: #f5d6b2;
+  font-weight: 600;
+}
+.login-brand-sub {
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: #d9b290;
+  margin-top: 4px;
+}
+.login-tagline {
+  margin-top: 48px;
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  line-height: 1.4;
+  color: #fff;
+  font-weight: 500;
+}
+.login-brand-footer {
+  position: absolute;
+  bottom: 32px; left: 60px;
+  font-size: 12px;
+  color: rgba(245, 214, 178, 0.55);
+  z-index: 1;
+}
+
+.login-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.login-card {
+  width: 100%;
+  max-width: 380px;
+}
+.login-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+.login-sub {
+  margin: 6px 0 32px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+.login-form { display: flex; flex-direction: column; gap: 16px; }
+.login-field { display: flex; flex-direction: column; gap: 6px; }
+.login-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+.login-field input {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.login-field input:focus {
+  outline: none;
+  border-color: var(--wine);
+  box-shadow: 0 0 0 3px rgba(110, 22, 34, 0.10);
+}
+.login-field input::placeholder { color: #b8a5a5; }
+
+.login-error {
+  display: none;
+  background: #fdecec;
+  color: #c0392b;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid #f4c8c8;
+}
+.login-error.visible { display: block; }
+
+.login-btn {
+  background: var(--wine);
+  color: #fff;
+  padding: 13px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 6px;
+  transition: background .15s ease, transform .1s ease;
+}
+.login-btn:hover { background: var(--wine-deep); }
+.login-btn:active { transform: translateY(1px); }
+
+.login-forgot {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-top: 6px;
+}
+.login-forgot:hover { color: var(--wine); }
+
+.login-hint {
+  margin-top: 28px;
+  padding: 12px 14px;
+  border: 1px dashed var(--wine-border);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--text-soft);
+  background: var(--cream-light);
+}
+.login-hint code {
+  background: #fff;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--wine);
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .login-shell { grid-template-columns: 1fr; }
+  .login-brand { padding: 40px; min-height: 240px; }
+  .login-tagline { margin-top: 24px; font-size: 20px; }
+  .login-brand-footer { display: none; }
+}
+
 /* ===== Strik Patisserie dashboard ===== */
 
 :root {
@@ -104,6 +274,43 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .user-name { font-size: 14px; color: #f1d6b8; }
 .user-caret { margin-left: auto; opacity: .7; color: #f1d6b8; display: inline-flex; }
+
+.user-menu { position: relative; margin-top: auto; }
+.user-menu .user { cursor: pointer; transition: background .15s ease; border-radius: 10px; margin: 0 -6px; padding-left: 14px; padding-right: 14px; }
+.user-menu .user:hover { background: rgba(255, 255, 255, 0.05); }
+.user-dropdown {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 8px; right: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  padding: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 10;
+}
+.user-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.user-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  text-align: left;
+}
+.user-dropdown button:hover { background: var(--wine-soft); color: var(--wine); }
 
 /* ===== MAIN ===== */
 .main {

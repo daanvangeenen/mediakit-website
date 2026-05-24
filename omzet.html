@@ -8,6 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Early auth guard — runs before render to prevent flash
+    (function() {
+      try {
+        var raw = localStorage.getItem('strik_auth');
+        if (!raw || JSON.parse(raw).email !== 'daan@software.nl') {
+          window.location.replace('login.html');
+        }
+      } catch (e) { window.location.replace('login.html'); }
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -50,10 +61,18 @@
         </a>
       </nav>
 
-      <div class="user">
-        <div class="user-avatar">DV</div>
-        <div class="user-name">Daan</div>
-        <span class="user-caret"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      <div class="user-menu" id="userMenu">
+        <div class="user">
+          <div class="user-avatar">DV</div>
+          <div class="user-name">Daan</div>
+          <span class="user-caret"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="user-dropdown">
+          <button class="logout-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17l5-5-5-5"/><path d="M20 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+            Uitloggen
+          </button>
+        </div>
       </div>
     </aside>
 
@@ -250,6 +269,7 @@
     </main>
   </div>
 
+  <script src="auth.js"></script>
   <script>
     // Line chart
     const ctx = document.getElementById('omzetChart').getContext('2d');
