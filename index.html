@@ -103,31 +103,50 @@
 
       <!-- STORE TABS -->
       <section class="store-tabs">
-        <button class="store-tab active">
+        <button class="store-tab active" data-store="totaal">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
           Totaal
         </button>
-        <button class="store-tab">
+        <button class="store-tab" data-store="ziekenstraat">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
           Ziekenstraat
         </button>
-        <button class="store-tab">
+        <button class="store-tab" data-store="heyendaal">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
           Heyendaal
         </button>
-        <button class="store-tab">
+        <button class="store-tab" data-store="lent">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
           Lent
         </button>
-        <button class="store-tab">
+        <button class="store-tab" data-store="daalseweg">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
           Daalseweg
         </button>
       </section>
 
+      <!-- INSIGHT PANEL (moved above KPIs) -->
+      <section class="insight">
+        <div class="insight-left">
+          <div class="insight-badge">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#f5d6b2" stroke="#f5d6b2" stroke-width="0"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/></svg>
+          </div>
+          <h2 class="insight-greeting">Hallo Daan,</h2>
+          <p class="insight-text" id="insightText">
+            De totale omzet over alle winkels en de webshop
+            is deze week <strong>€ 67.450</strong>. Dat is <strong class="up">6,8% hoger</strong> dan in
+            dezelfde week vorig jaar. Je zit mooi op koers.
+          </p>
+        </div>
+
+        <div class="insight-right" id="insightRows">
+          <!-- rows rendered by app.js -->
+        </div>
+      </section>
+
       <!-- KPI CARDS -->
       <section class="kpi-grid">
-        <a href="omzet.html" class="kpi-card selected kpi-link">
+        <a href="omzet.html" class="kpi-card selected kpi-link" data-kpi="omzet">
           <div class="kpi-head">
             <span class="kpi-icon">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
@@ -141,14 +160,14 @@
             </span>
           </div>
           <div class="kpi-label">Omzet</div>
-          <div class="kpi-value">€ 67.450</div>
+          <div class="kpi-value" data-field="value">€ 67.450</div>
           <div class="kpi-delta">
-            <span class="delta-up">↑ +6,8%</span>
+            <span class="delta-up" data-field="delta">↑ +6,8%</span>
             <span class="delta-period">vs. 15–21 apr 2024</span>
           </div>
         </a>
 
-        <article class="kpi-card">
+        <article class="kpi-card" data-kpi="besteding">
           <div class="kpi-head">
             <span class="kpi-icon">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14 20c0-2.4 1.6-4 3.5-4S21 17.6 21 20"/></svg>
@@ -156,14 +175,14 @@
             <button class="kpi-arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
           </div>
           <div class="kpi-label">Besteding per klant</div>
-          <div class="kpi-value">€ 13,78</div>
+          <div class="kpi-value" data-field="value">€ 13,78</div>
           <div class="kpi-delta">
-            <span class="delta-up">↑ +1,1%</span>
+            <span class="delta-up" data-field="delta">↑ +1,1%</span>
             <span class="delta-period">vs. 15–21 apr 2024</span>
           </div>
         </article>
 
-        <article class="kpi-card">
+        <article class="kpi-card" data-kpi="retouren">
           <div class="kpi-head">
             <span class="kpi-icon">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M4 9h11a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5H8"/></svg>
@@ -171,69 +190,27 @@
             <button class="kpi-arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
           </div>
           <div class="kpi-label">Retouren</div>
-          <div class="kpi-value">€ 482</div>
+          <div class="kpi-value" data-field="value">€ 482</div>
           <div class="kpi-delta">
-            <span class="delta-up">↑ +4,2%</span>
+            <span class="delta-up" data-field="delta">↑ +4,2%</span>
             <span class="delta-period">vs. 15–21 apr 2024</span>
           </div>
         </article>
 
-        <article class="kpi-card">
+        <article class="kpi-card" data-kpi="fourth">
           <div class="kpi-head">
-            <span class="kpi-icon">
+            <span class="kpi-icon" data-field="icon">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11l2-8H6.5"/></svg>
             </span>
             <button class="kpi-arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
           </div>
-          <div class="kpi-label">Online omzet (webshop)</div>
-          <div class="kpi-value">€ 9.210</div>
+          <div class="kpi-label" data-field="label">Online omzet (webshop)</div>
+          <div class="kpi-value" data-field="value">€ 9.210</div>
           <div class="kpi-delta">
-            <span class="delta-up">↑ +12,3%</span>
+            <span class="delta-up" data-field="delta">↑ +12,3%</span>
             <span class="delta-period">vs. 15–21 apr 2024</span>
           </div>
         </article>
-      </section>
-
-      <!-- INSIGHT PANEL -->
-      <section class="insight">
-        <div class="insight-left">
-          <div class="insight-badge">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="#f5d6b2" stroke="#f5d6b2" stroke-width="0"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/></svg>
-          </div>
-          <h2 class="insight-greeting">Hallo Daan,</h2>
-          <p class="insight-text">
-            De totale omzet over alle winkels en de webshop
-            is deze week <strong>€ 67.450</strong>. Dat is <strong class="up">6,8% hoger</strong> dan in
-            dezelfde week vorig jaar. Je zit mooi op koers.
-          </p>
-        </div>
-
-        <div class="insight-right">
-          <div class="insight-row">
-            <span class="row-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
-            </span>
-            <span>Je omzet is <strong class="up">6,8% hoger</strong><br/>dan dezelfde week vorig jaar.</span>
-          </div>
-          <div class="insight-row">
-            <span class="row-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M4 9h11a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5H8"/></svg>
-            </span>
-            <span>Je retouren zijn <strong class="up">4,2% hoger</strong><br/>dan vorig jaar.</span>
-          </div>
-          <div class="insight-row">
-            <span class="row-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14 20c0-2.4 1.6-4 3.5-4S21 17.6 21 20"/></svg>
-            </span>
-            <span>De gemiddelde besteding per klant<br/>is <strong>gelijk gebleven</strong> t.o.v. vorig jaar.</span>
-          </div>
-          <div class="insight-row">
-            <span class="row-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11l2-8H6.5"/></svg>
-            </span>
-            <span>Je online omzet is <strong class="up">12,3% hoger</strong><br/>dan dezelfde week vorig jaar.</span>
-          </div>
-        </div>
       </section>
 
       <!-- FOOTER -->
@@ -249,5 +226,7 @@
       </footer>
     </main>
   </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

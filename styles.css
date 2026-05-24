@@ -211,6 +211,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-color: var(--wine);
 }
 .store-tab.active .store-icon { color: #f5d6b2; }
+.store-tab { cursor: pointer; }
 
 /* KPI cards */
 .kpi-grid {
@@ -297,6 +298,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--green);
   font-weight: 600;
 }
+.delta-down {
+  color: #c0392b;
+  font-weight: 600;
+}
 .delta-period {
   color: var(--text-soft);
 }
@@ -334,6 +339,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .insight-text strong { color: var(--wine); font-weight: 600; }
 .insight-text .up { color: var(--green); }
+.insight-text .down { color: #c0392b; }
 
 .insight-right {
   display: grid;
@@ -351,6 +357,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .insight-row strong { font-weight: 600; }
 .insight-row .up { color: var(--green); }
+.insight-row .down { color: #c0392b; }
 .row-icon {
   width: 36px; height: 36px; flex: 0 0 36px;
   border-radius: 50%;
