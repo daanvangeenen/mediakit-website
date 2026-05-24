@@ -1,100 +1,69 @@
 // ===== Strik Patisserie dashboard — store switching =====
 //
-// Per-store data is fictitious but the physical-store + webshop totals
-// add up to the figures shown on the "Totaal" tab.
+// Klant: Strik Patisserie.  Software: Yield.
 //
-//   Omzet:      19.420 + 16.110 + 12.860 + 9.850 + 9.210 (webshop) = 67.450
-//   Retouren:      138 +    115 +     92 +    71 +     66 (webshop) =    482
-//   Klanten:     1.410 +  1.200 +    925 +   720 +    640 (webshop) =  4.895
-//   Besteding per klant = 67.450 / 4.895 ≈ € 13,78 (weighted average)
-
-const ICONS = {
-  trend:  '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>',
-  people: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14 20c0-2.4 1.6-4 3.5-4S21 17.6 21 20"/></svg>',
-  return: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M4 9h11a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5H8"/></svg>',
-  cart:   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11l2-8H6.5"/></svg>',
-  klant:  '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>',
-};
+// Per-store data is fictitious. Physical stores + webshop (verstopt in Totaal)
+// sommeren naar de Totaal-cijfers:
+//
+//   Omzet:    19.420 + 16.110 + 12.860 + 9.850 + 9.210 (webshop) = 67.450
+//   Klanten:   1.410 +  1.200 +    925 +   720 +    640 (webshop) =  4.895
+//   Retouren:    138 +    115 +     92 +    71 +     66 (webshop) =    482
+//   Besteding per klant (gewogen): 67.450 / 4.895 ≈ € 13,78
 
 const STORES = {
   totaal: {
+    name: 'Totaal',
     kpis: {
-      omzet:     { value: '€ 67.450', delta: '+6,8%',  dir: 'up' },
-      besteding: { value: '€ 13,78',  delta: '+1,1%',  dir: 'up' },
-      retouren:  { value: '€ 482',    delta: '+4,2%',  dir: 'up' },
-      fourth:    { label: 'Online omzet (webshop)', value: '€ 9.210', delta: '+12,3%', dir: 'up', icon: 'cart' },
+      omzet:     { value: '€ 67.450', delta: '+6,8%', dir: 'up' },
+      klanten:   { value: '4.895',    delta: '+5,6%', dir: 'up' },
+      besteding: { value: '€ 13,78',  delta: '+1,1%', dir: 'up' },
+      retouren:  { value: '€ 482',    delta: '+4,2%', dir: 'up' },
     },
-    summary: 'De totale omzet over alle winkels en de webshop is deze week <strong>€ 67.450</strong>. Dat is <strong class="up">6,8% hoger</strong> dan in dezelfde week vorig jaar. Je zit mooi op koers.',
-    rows: [
-      { icon: 'trend',  text: 'Je omzet is <strong class="up">6,8% hoger</strong><br/>dan dezelfde week vorig jaar.' },
-      { icon: 'return', text: 'Je retouren zijn <strong class="up">4,2% hoger</strong><br/>dan vorig jaar.' },
-      { icon: 'people', text: 'De gemiddelde besteding per klant<br/>is <strong>gelijk gebleven</strong> t.o.v. vorig jaar.' },
-      { icon: 'cart',   text: 'Je online omzet is <strong class="up">12,3% hoger</strong><br/>dan dezelfde week vorig jaar.' },
-    ],
+    summary: 'Over al je winkels en de webshop draaide je deze week <strong>€ 67.450 omzet</strong> — <strong class="up">6,8% hoger</strong> dan dezelfde week vorig jaar. Je had <strong>4.895 klanten</strong> (+5,6%) die gemiddeld <strong>€ 13,78</strong> besteedden. Retouren zijn licht gestegen naar <strong>€ 482</strong> (+4,2%). Je zit mooi op koers.',
   },
 
   ziekenstraat: {
+    name: 'Ziekenstraat',
     kpis: {
       omzet:     { value: '€ 19.420', delta: '+7,4%', dir: 'up' },
+      klanten:   { value: '1.410',    delta: '+5,9%', dir: 'up' },
       besteding: { value: '€ 13,77',  delta: '+1,4%', dir: 'up' },
       retouren:  { value: '€ 138',    delta: '+3,8%', dir: 'up' },
-      fourth:    { label: 'Aantal klanten', value: '1.410', delta: '+5,9%', dir: 'up', icon: 'klant' },
     },
-    summary: 'Winkel Ziekenstraat draaide deze week <strong>€ 19.420</strong> omzet. Dat is <strong class="up">7,4% hoger</strong> dan dezelfde week vorig jaar — de sterkste week sinds Pasen.',
-    rows: [
-      { icon: 'trend',  text: 'Omzet is <strong class="up">7,4% hoger</strong><br/>dan dezelfde week vorig jaar.' },
-      { icon: 'return', text: 'Retouren zijn <strong class="up">3,8% hoger</strong><br/>dan vorig jaar.' },
-      { icon: 'people', text: 'Besteding per klant is <strong class="up">1,4% hoger</strong><br/>t.o.v. vorig jaar.' },
-      { icon: 'klant',  text: '<strong>1.410 klanten</strong> deze week,<br/><strong class="up">5,9% meer</strong> dan vorig jaar.' },
-    ],
+    summary: 'Winkel Ziekenstraat is je sterkste winkel deze week met <strong>€ 19.420 omzet</strong> (<strong class="up">+7,4%</strong> t.o.v. vorig jaar). Je bediende <strong>1.410 klanten</strong> (+5,9%) die gemiddeld <strong>€ 13,77</strong> besteedden. Retouren stegen licht naar <strong>€ 138</strong> (+3,8%).',
   },
 
   heyendaal: {
+    name: 'Heyendaal',
     kpis: {
       omzet:     { value: '€ 16.110', delta: '+4,1%', dir: 'up' },
+      klanten:   { value: '1.200',    delta: '+3,5%', dir: 'up' },
       besteding: { value: '€ 13,43',  delta: '+0,6%', dir: 'up' },
       retouren:  { value: '€ 115',    delta: '+5,2%', dir: 'up' },
-      fourth:    { label: 'Aantal klanten', value: '1.200', delta: '+3,5%', dir: 'up', icon: 'klant' },
     },
-    summary: 'Winkel Heyendaal kwam uit op <strong>€ 16.110</strong> omzet, <strong class="up">4,1% hoger</strong> dan vorig jaar. Stabiele groei in lijn met de trend.',
-    rows: [
-      { icon: 'trend',  text: 'Omzet is <strong class="up">4,1% hoger</strong><br/>dan dezelfde week vorig jaar.' },
-      { icon: 'return', text: 'Retouren zijn <strong class="up">5,2% hoger</strong><br/>dan vorig jaar — even bekijken.' },
-      { icon: 'people', text: 'Besteding per klant is <strong class="up">0,6% hoger</strong><br/>t.o.v. vorig jaar.' },
-      { icon: 'klant',  text: '<strong>1.200 klanten</strong> deze week,<br/><strong class="up">3,5% meer</strong> dan vorig jaar.' },
-    ],
+    summary: 'Winkel Heyendaal draaide deze week <strong>€ 16.110</strong> omzet — <strong class="up">4,1% hoger</strong> dan vorig jaar. <strong>1.200 klanten</strong> (+3,5%) besteedden gemiddeld <strong>€ 13,43</strong>. Stabiele groei, maar de retouren stijgen iets sneller (<strong>€ 115</strong>, +5,2%) — het bekijken waard.',
   },
 
   lent: {
+    name: 'Lent',
     kpis: {
       omzet:     { value: '€ 12.860', delta: '+9,2%', dir: 'up' },
+      klanten:   { value: '925',      delta: '+6,8%', dir: 'up' },
       besteding: { value: '€ 13,90',  delta: '+2,1%', dir: 'up' },
       retouren:  { value: '€ 92',     delta: '+4,1%', dir: 'up' },
-      fourth:    { label: 'Aantal klanten', value: '925', delta: '+6,8%', dir: 'up', icon: 'klant' },
     },
-    summary: 'Winkel Lent presteert sterk met <strong>€ 12.860</strong> omzet, <strong class="up">9,2% hoger</strong> dan vorig jaar. De grootste stijger van deze week.',
-    rows: [
-      { icon: 'trend',  text: 'Omzet is <strong class="up">9,2% hoger</strong><br/>dan dezelfde week vorig jaar.' },
-      { icon: 'return', text: 'Retouren zijn <strong class="up">4,1% hoger</strong><br/>dan vorig jaar.' },
-      { icon: 'people', text: 'Besteding per klant is <strong class="up">2,1% hoger</strong><br/>t.o.v. vorig jaar.' },
-      { icon: 'klant',  text: '<strong>925 klanten</strong> deze week,<br/><strong class="up">6,8% meer</strong> dan vorig jaar.' },
-    ],
+    summary: 'Winkel Lent is de grootste stijger van deze week met <strong>€ 12.860 omzet</strong> (<strong class="up">+9,2%</strong>). <strong>925 klanten</strong> kwamen langs (+6,8%) en gaven gemiddeld <strong>€ 13,90</strong> uit — de hoogste besteding per klant van al je winkels.',
   },
 
   daalseweg: {
+    name: 'Daalseweg',
     kpis: {
       omzet:     { value: '€ 9.850',  delta: '-1,3%', dir: 'down' },
+      klanten:   { value: '720',      delta: '-1,0%', dir: 'down' },
       besteding: { value: '€ 13,68',  delta: '-0,3%', dir: 'down' },
       retouren:  { value: '€ 71',     delta: '+2,9%', dir: 'up' },
-      fourth:    { label: 'Aantal klanten', value: '720', delta: '-1,0%', dir: 'down', icon: 'klant' },
     },
-    summary: 'Winkel Daalseweg sloot deze week af op <strong>€ 9.850</strong> omzet, <strong class="down">1,3% lager</strong> dan vorig jaar. Lichte daling, het volgen waard.',
-    rows: [
-      { icon: 'trend',  text: 'Omzet is <strong class="down">1,3% lager</strong><br/>dan dezelfde week vorig jaar.' },
-      { icon: 'return', text: 'Retouren zijn <strong class="up">2,9% hoger</strong><br/>dan vorig jaar.' },
-      { icon: 'people', text: 'Besteding per klant is <strong class="down">0,3% lager</strong><br/>t.o.v. vorig jaar.' },
-      { icon: 'klant',  text: '<strong>720 klanten</strong> deze week,<br/><strong class="down">1,0% minder</strong> dan vorig jaar.' },
-    ],
+    summary: 'Winkel Daalseweg sloot de week af op <strong>€ 9.850 omzet</strong>, <strong class="down">1,3% lager</strong> dan vorig jaar. Met <strong>720 klanten</strong> (−1,0%) en een gemiddelde besteding van <strong>€ 13,68</strong> (−0,3%) is dit je zwakste week sinds maart. Het volgen waard.',
   },
 };
 
@@ -115,26 +84,6 @@ function renderKpiCard(kpiKey, data) {
     deltaEl.textContent = `${arrow(data.dir)} ${data.delta}`;
     deltaEl.className = data.dir === 'down' ? 'delta-down' : 'delta-up';
   }
-
-  // The fourth KPI also has a swappable label + icon
-  const labelEl = card.querySelector('[data-field="label"]');
-  const iconEl = card.querySelector('[data-field="icon"]');
-  if (labelEl && data.label) labelEl.textContent = data.label;
-  if (iconEl && data.icon) iconEl.innerHTML = ICONS[data.icon] || '';
-}
-
-function renderInsight(store) {
-  const textEl = document.getElementById('insightText');
-  const rowsEl = document.getElementById('insightRows');
-  if (textEl) textEl.innerHTML = store.summary;
-  if (rowsEl) {
-    rowsEl.innerHTML = store.rows.map(r => `
-      <div class="insight-row">
-        <span class="row-icon">${ICONS[r.icon] || ''}</span>
-        <span>${r.text}</span>
-      </div>
-    `).join('');
-  }
 }
 
 function renderStore(storeKey) {
@@ -142,21 +91,43 @@ function renderStore(storeKey) {
   if (!store) return;
 
   renderKpiCard('omzet', store.kpis.omzet);
+  renderKpiCard('klanten', store.kpis.klanten);
   renderKpiCard('besteding', store.kpis.besteding);
   renderKpiCard('retouren', store.kpis.retouren);
-  renderKpiCard('fourth', store.kpis.fourth);
-  renderInsight(store);
 
-  document.querySelectorAll('.store-tab').forEach(tab => {
-    tab.classList.toggle('active', tab.dataset.store === storeKey);
+  const hero = document.getElementById('heroText');
+  if (hero) hero.innerHTML = store.summary;
+
+  const name = document.getElementById('currentStoreName');
+  if (name) name.textContent = store.name;
+
+  document.querySelectorAll('.store-selector-menu button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.store === storeKey);
   });
 }
 
-// ----- init -----
+// ----- store selector wiring -----
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.store-tab').forEach(tab => {
-    tab.addEventListener('click', () => renderStore(tab.dataset.store));
+  const selector = document.getElementById('storeSelector');
+  if (!selector) return;
+
+  const trigger = selector.querySelector('.store-selector-btn');
+  const menu = selector.querySelector('.store-selector-menu');
+
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    selector.classList.toggle('open');
   });
+  document.addEventListener('click', () => selector.classList.remove('open'));
+
+  menu.querySelectorAll('button[data-store]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      renderStore(btn.dataset.store);
+      selector.classList.remove('open');
+    });
+  });
+
   renderStore('totaal');
 });
