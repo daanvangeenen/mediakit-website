@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
   <script>
     // Early auth guard — runs before render to prevent flash
     (function() {
@@ -190,12 +190,12 @@
           </div>
         </a>
 
-        <article class="kpi-card" data-kpi="klanten">
+        <a href="klanten.html" class="kpi-card kpi-link" data-kpi="klanten">
           <div class="kpi-head">
             <span class="kpi-icon">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             </span>
-            <button class="kpi-arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+            <span class="kpi-arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
           </div>
           <div class="kpi-label">Aantal klanten</div>
           <div class="kpi-value" data-field="value">4.895</div>
@@ -203,7 +203,7 @@
             <span class="delta-up" data-field="delta">↑ +5,6%</span>
             <span class="delta-period">vs. 15–21 apr 2024</span>
           </div>
-        </article>
+        </a>
 
         <article class="kpi-card" data-kpi="besteding">
           <div class="kpi-head">
@@ -250,7 +250,7 @@
     </main>
   </div>
 
-  <script src="app.js?v=7"></script>
-  <script src="auth.js?v=7"></script>
+  <script src="app.js?v=8"></script>
+  <script src="auth.js?v=8"></script>
 </body>
 </html>
