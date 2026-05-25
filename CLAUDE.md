@@ -4,7 +4,7 @@ Context for Claude when working on this project. Keep this up to date when you m
 
 ## What this project is
 
-A dashboard mockup for **Yield** (the software company — placeholder name) that shows POS-data insights to bakeries and patisseries in the Netherlands. The demo customer is **Strik Patisserie**, a fictional patisserie with 4 physical stores (Ziekenstraat, Heyendaal, Lent, Daalseweg) and a webshop.
+A dashboard mockup for **Yield** (the software company — placeholder name) that shows POS-data insights to bakeries and patisseries in the Netherlands. The demo customer is **Strik Patisserie**, a fictional patisserie with 4 physical stores (Ziekerstraat, Heyendaal, Lent, Daalseweg) and a webshop.
 
 **Goal of the software:** give bakers visibility into store revenue, customer behavior, returns, and product performance — so they can spot opportunities to grow margin and revenue.
 
@@ -78,7 +78,7 @@ There is no build step. Open `index.html` in a browser or `python3 -m http.serve
 Layout top to bottom:
 1. **Client banner pill:** `KLANT · Strik Patisserie` (small wine-coloured pill, signals which bakery's data this is)
 2. **Topbar:** "Dashboard" title + date picker (`14 apr – 20 apr 2025`) + Dag/Week/Maand/YTD toggle
-3. **Store tabs:** 5 equal-width cards in a row — `Totaal | Ziekenstraat | Heyendaal | Lent | Daalseweg`. Active = wine background.
+3. **Store tabs:** 5 equal-width cards in a row — `Totaal | Ziekerstraat | Heyendaal | Lent | Daalseweg`. Active = wine background.
 4. **Hero insight panel** (cream background):
    - "Hallo Daan,"
    - Intro line that adapts per store ("Het was een goede week voor de winkels!", "Lent is de grootste stijger van deze week!", etc.)
@@ -205,7 +205,7 @@ All data is **fictitious** but calibrated so per-store numbers sum to the Totaal
 
 | Winkel | Omzet | Klanten | Retouren |
 |---|---|---|---|
-| Ziekenstraat | € 19.420 (+7,4%) | 1.410 (+5,9%) | € 138 (+3,8%) |
+| Ziekerstraat | € 19.420 (+7,4%) | 1.410 (+5,9%) | € 138 (+3,8%) |
 | Heyendaal | € 16.110 (+4,1%) | 1.200 (+3,5%) | € 115 (+5,2%) |
 | Lent | € 12.860 (+9,2%) | 925 (+6,8%) | € 92 (+4,1%) |
 | Daalseweg | € 9.850 (−1,3%) | 720 (−1,0%) | € 71 (+2,9%) |
@@ -215,10 +215,10 @@ All data is **fictitious** but calibrated so per-store numbers sum to the Totaal
 Besteding per klant (weighted avg): 67.450 / 4.895 = **€ 13,78** (+1,1%)
 
 ### Per-store besteding:
-- Ziekenstraat €13,77 (+1,4%) · Heyendaal €13,43 (+0,6%) · Lent €13,90 (+2,1%) · Daalseweg €13,68 (−0,3%)
+- Ziekerstraat €13,77 (+1,4%) · Heyendaal €13,43 (+0,6%) · Lent €13,90 (+2,1%) · Daalseweg €13,68 (−0,3%)
 
 ### Store ratios for scaling (omzet/klanten/retouren-aandeel):
-- Ziekenstraat 28,8% / Heyendaal 23,9% / Lent 19,1% / Daalseweg 14,6%
+- Ziekerstraat 28,8% / Heyendaal 23,9% / Lent 19,1% / Daalseweg 14,6%
 - Webshop 13,7% (only contributes to Totaal, never shown standalone)
 
 ### Daily distribution pattern:

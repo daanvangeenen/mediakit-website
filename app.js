@@ -31,9 +31,9 @@ const STORES = {
     },
   },
 
-  ziekenstraat: {
-    name: 'Ziekenstraat',
-    intro: 'Het was een sterke week voor Ziekenstraat!',
+  ziekerstraat: {
+    name: 'Ziekerstraat',
+    intro: 'Het was een sterke week voor Ziekerstraat!',
     bullets: [
       'Je <strong>omzet</strong> groeide met <strong class="up">7,4%</strong> naar <strong>€ 19.420</strong> — de hoogste van al je winkels.',
       'Je bediende <strong>1.410 klanten</strong>, <strong class="up">5,9% meer</strong> dan vorig jaar.',

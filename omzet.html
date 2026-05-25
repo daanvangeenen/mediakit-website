@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
   <script>
     // Early auth guard — runs before render to prevent flash
     (function() {
@@ -45,11 +45,7 @@
         </a>
         <a href="#" class="nav-item">
           <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
-          Analyse omzet
-        </a>
-        <a href="#" class="nav-item">
-          <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
-          Assortiment
+          Analyses
         </a>
         <a href="#" class="nav-item">
           <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
@@ -118,9 +114,9 @@
           <span class="store-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
           Totaal
         </button>
-        <button class="store-tab" data-store="ziekenstraat">
+        <button class="store-tab" data-store="ziekerstraat">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
-          Ziekenstraat
+          Ziekerstraat
         </button>
         <button class="store-tab" data-store="heyendaal">
           <span class="store-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
@@ -189,7 +185,7 @@
         </table>
       </section>
 
-      <!-- CTA: Analyse omzet -->
+      <!-- CTA: Analyses -->
       <section class="cta-banner">
         <div class="cta-content">
           <div class="cta-icon">
@@ -197,10 +193,10 @@
           </div>
           <div class="cta-text">
             <div class="cta-title">Wil je verder uitzoeken waar mogelijkheden liggen tot meer omzet?</div>
-            <div class="cta-sub">Klik hier of klik op het tabje <strong>Analyse omzet</strong> in het menu links.</div>
+            <div class="cta-sub">Klik hier of klik op het tabje <strong>Analyses</strong> in het menu links.</div>
           </div>
         </div>
-        <a href="#" class="cta-btn">Naar Analyse omzet →</a>
+        <a href="#" class="cta-btn">Naar Analyses →</a>
       </section>
 
       <!-- FOOTER -->
@@ -216,7 +212,7 @@
     </main>
   </div>
 
-  <script src="auth.js?v=9"></script>
+  <script src="auth.js?v=10"></script>
   <script>
     // ===== Per-store data =====
     const OMZET_STORES = {
@@ -229,8 +225,8 @@
         daysLast: [7680, 8120, 8410, 8730, 10760, 12940, 6520],
         ratio: 1,
       },
-      ziekenstraat: {
-        name: '— Ziekenstraat',
+      ziekerstraat: {
+        name: '— Ziekerstraat',
         total: '€ 19.420',
         delta: '+7,4%',
         dir: 'up',
