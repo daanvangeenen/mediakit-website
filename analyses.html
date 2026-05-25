@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analyses — Strik Patisserie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=11" />
+  <script>
+    (function() {
+      try {
+        var raw = localStorage.getItem('strik_auth');
+        if (!raw || JSON.parse(raw).email !== 'daan@software.nl') {
+          window.location.replace('login.html');
+        }
+      } catch (e) { window.location.replace('login.html'); }
+    })();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-crown">
+          <svg viewBox="0 0 32 24" width="28" height="22" aria-hidden="true">
+            <path d="M2 22 L6 6 L12 14 L16 4 L20 14 L26 6 L30 22 Z" fill="none" stroke="#f5d6b2" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="6" cy="5" r="1.4" fill="#f5d6b2"/>
+            <circle cx="16" cy="3" r="1.6" fill="#f5d6b2"/>
+            <circle cx="26" cy="5" r="1.4" fill="#f5d6b2"/>
+          </svg>
+        </div>
+        <div class="brand-name">STRIK</div>
+        <div class="brand-sub">PATISSERIE</div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+          Dashboard
+        </a>
+        <a href="analyses.html" class="nav-item active">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
+          Analyses
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
+          Recepturen
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+          Rapportages
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h0a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+          Instellingen
+        </a>
+      </nav>
+
+      <div class="user-menu" id="userMenu">
+        <div class="user">
+          <div class="user-avatar">DV</div>
+          <div class="user-name">Daan</div>
+          <span class="user-caret"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="user-dropdown">
+          <button class="logout-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17l5-5-5-5"/><path d="M20 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+            Uitloggen
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="client-banner">
+        <span class="client-label">Klant</span>
+        <span class="client-name">Strik Patisserie</span>
+      </div>
+
+      <header class="topbar">
+        <div class="title-wrap">
+          <h1 class="page-title">Analyses</h1>
+          <p class="page-sub">Diepere inzichten in je data om kansen te ontdekken</p>
+        </div>
+
+        <div class="topbar-controls">
+          <button class="date-picker">
+            <span class="date-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
+            <span id="datePickerLabel">apr 2025</span>
+            <span class="date-caret"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="period-toggle">
+            <button data-period="dag">Dag</button>
+            <button data-period="week">Week</button>
+            <button data-period="maand" class="active">Maand</button>
+            <button data-period="ytd">YTD</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTROLS: dropdown left, mini store tabs right -->
+      <section class="analysis-controls">
+        <!-- Left: question dropdown -->
+        <div class="analysis-question">
+          <div class="analysis-question-label">Waar wil je meer inzicht in hebben?</div>
+          <div class="analysis-dropdown" id="analysisDropdown">
+            <button type="button" class="analysis-dropdown-btn">
+              <span class="analysis-dropdown-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>
+              </span>
+              <span class="analysis-dropdown-text" id="currentAnalysisName">Wanneer is mijn product uitverkocht?</span>
+              <svg class="analysis-dropdown-caret" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="analysis-dropdown-menu">
+              <button type="button" data-analysis="uitverkocht" class="active">Wanneer is mijn product uitverkocht?</button>
+              <button type="button" data-analysis="retouren">Wat zijn mijn retouren?</button>
+              <button type="button" data-analysis="winkels">Winkels t.o.v. elkaar</button>
+              <button type="button" data-analysis="omzet">Hoe haal ik meer omzet?</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: mini store tabs -->
+        <div class="analysis-stores">
+          <div class="analysis-stores-label">Winkel</div>
+          <div class="store-tabs mini">
+            <button class="store-tab active" data-store="totaal">
+              <span class="store-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
+              Totaal
+            </button>
+            <button class="store-tab" data-store="ziekerstraat">
+              <span class="store-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
+              Ziekerstraat
+            </button>
+            <button class="store-tab" data-store="heyendaal">
+              <span class="store-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
+              Heyendaal
+            </button>
+            <button class="store-tab" data-store="lent">
+              <span class="store-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
+              Lent
+            </button>
+            <button class="store-tab" data-store="daalseweg">
+              <span class="store-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M3 9h18"/><path d="M9 20v-5h6v5"/></svg></span>
+              Daalseweg
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANALYSIS CONTENT -->
+      <section id="analysisContent">
+        <!-- gevuld door script -->
+      </section>
+
+      <footer class="footer">
+        <div class="footer-left">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+          <span id="footerPeriod">Periode: april 2025</span>
+        </div>
+        <div class="footer-right">
+          <a href="#">Wijzig vergelijking in instellingen →</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="auth.js?v=11"></script>
+  <script>
+    // ===== State =====
+    let currentAnalysis = 'uitverkocht';
+    let currentStore = 'totaal';
+    let currentPeriod = 'maand';
+
+    const STORE_LABELS = {
+      totaal: 'totaal alle winkels',
+      ziekerstraat: 'Ziekerstraat',
+      heyendaal: 'Heyendaal',
+      lent: 'Lent',
+      daalseweg: 'Daalseweg',
+    };
+    const STORE_RATIOS = {
+      totaal: 1,
+      ziekerstraat: 0.288,
+      heyendaal: 0.239,
+      lent: 0.191,
+      daalseweg: 0.147,
+    };
+    const PERIOD_LABELS = {
+      dag: '20 apr 2025',
+      week: '14 apr – 20 apr 2025',
+      maand: 'apr 2025',
+      ytd: '1 jan – 20 apr 2025',
+    };
+    const PERIOD_FOOTER = {
+      dag: 'Periode: 20 april 2025',
+      week: 'Periode: 14 – 20 april 2025',
+      maand: 'Periode: april 2025',
+      ytd: 'Periode: 1 januari – 20 april 2025',
+    };
+    // Scale multipliers (vs maand baseline)
+    const PERIOD_SCALE = {
+      dag: 0.04,   // ~1/25 of month
+      week: 0.25,  // ~1/4 of month
+      maand: 1,
+      ytd: 3.7,    // ~3.7 months YTD (jan 1 → apr 20)
+    };
+
+    // ===== Data: top 10 uitverkocht producten (Maand baseline, totaal) =====
+    // - timesOut: dagen dat product uitverkocht raakte (van ~30 dagen openingen)
+    // - avgTime: gemiddeld tijdstip waarop product uitverkocht was
+    // - dayPct: % van openingstijd (07:00–18:00) wanneer uitverkocht. Lager = vroeger = urgenter.
+    // - advice: aanbevolen productie-aanpassing
+    // - priority: 'high' / 'medium' / 'low'  (kleur badge)
+    //
+    // Gesorteerd op relevantie-score: timesOut × (1 - dayPct/100). Hoger = urgenter.
+    const UITVERKOCHT = [
+      { name: 'Bruin desem',       cat: 'Brood',                timesOut: 12, avgTime: '11:30', dayPct: 41, advice: '+35% productie', priority: 'high' },
+      { name: 'Slagroomtaart 8p',  cat: 'Taart op bestelling',  timesOut: 14, avgTime: '12:45', dayPct: 52, advice: '+25% productie', priority: 'high' },
+      { name: 'Strikgebakje',      cat: 'Gebak',                timesOut: 18, avgTime: '14:20', dayPct: 67, advice: '+30% productie', priority: 'high' },
+      { name: 'Croissant',         cat: 'Koek & klein',         timesOut:  7, avgTime: '10:30', dayPct: 32, advice: '+40% productie', priority: 'high' },
+      { name: 'Worstenbroodje',    cat: 'Koek & klein',         timesOut: 10, avgTime: '13:15', dayPct: 57, advice: '+20% productie', priority: 'medium' },
+      { name: 'Appelflap',         cat: 'Koek & klein',         timesOut:  8, avgTime: '14:50', dayPct: 71, advice: '+15% productie', priority: 'medium' },
+      { name: 'Tompouce',          cat: 'Gebak',                timesOut: 11, avgTime: '15:40', dayPct: 79, advice: '+15% productie', priority: 'medium' },
+      { name: 'Eclair',            cat: 'Gebak',                timesOut:  9, avgTime: '16:00', dayPct: 82, advice: '+10% productie', priority: 'low' },
+      { name: 'Wit casino',        cat: 'Brood',                timesOut:  5, avgTime: '16:30', dayPct: 86, advice: '+5% productie',  priority: 'low' },
+      { name: 'Bonbondoos 9 st.',  cat: 'Overig',               timesOut:  6, avgTime: '17:00', dayPct: 91, advice: '+5% productie',  priority: 'low' },
+    ];
+
+    const PRIORITY_LABELS = {
+      high:   { label: 'Hoog',     short: 'Hoge prioriteit' },
+      medium: { label: 'Gemiddeld', short: 'Middelhoog' },
+      low:    { label: 'Laag',     short: 'Lage prioriteit' },
+    };
+
+    // ===== Render: Uitverkocht analysis =====
+    function renderUitverkocht() {
+      const storeRatio = STORE_RATIOS[currentStore];
+      const periodScale = PERIOD_SCALE[currentPeriod];
+      const scaledProducts = UITVERKOCHT.map(p => ({
+        ...p,
+        timesOut: Math.max(1, Math.round(p.timesOut * storeRatio * periodScale)),
+      }));
+
+      const highCount = scaledProducts.filter(p => p.priority === 'high').length;
+      const totalTimesOut = scaledProducts.reduce((acc, p) => acc + p.timesOut, 0);
+
+      const periodText = {
+        dag: 'deze dag',
+        week: 'deze week',
+        maand: 'deze maand',
+        ytd: 'dit jaar',
+      }[currentPeriod];
+
+      return `
+        <section class="analysis-intro">
+          <div class="analysis-intro-badge">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          </div>
+          <div class="analysis-intro-text">
+            <h2 class="analysis-intro-title">Wanneer is mijn product uitverkocht?</h2>
+            <p class="analysis-intro-sub">
+              Deze 10 producten verkopen ${periodText} regelmatig uit voor sluitingstijd. <strong>${highCount} daarvan verdienen prioriteit</strong> —
+              ze raken op vóór de middag of zijn meermaals op rij uitverkocht. Overweeg meer te bakken.
+            </p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">Top 10 meest relevante producten</h2>
+              <p class="card-sub">Gerangschikt op urgentie · ${STORE_LABELS[currentStore]} · ${periodText}</p>
+            </div>
+          </div>
+          <table class="table uitverkocht-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Categorie</th>
+                <th class="num">× uitverkocht</th>
+                <th class="num">Gem. tijd uitverkocht</th>
+                <th class="bar-col">Hoe vroeg op de dag?</th>
+                <th>Advies</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${scaledProducts.map((p, i) => {
+                // Earlier in day = more urgent. Bar fills MORE the EARLIER it sold out.
+                const urgencyPct = 100 - p.dayPct;
+                const priorityClass = `priority-${p.priority}`;
+                const rankClass = i < 4 ? 'rank-top' : '';
+                return `
+                  <tr>
+                    <td class="${rankClass}">${i + 1}</td>
+                    <td><strong>${p.name}</strong></td>
+                    <td>${p.cat}</td>
+                    <td class="num">${p.timesOut}×</td>
+                    <td class="num">${p.avgTime}</td>
+                    <td class="bar-col">
+                      <div class="urgency-bar-track">
+                        <div class="urgency-bar-fill ${priorityClass}" style="width:${urgencyPct}%"></div>
+                      </div>
+                      <div class="urgency-meta">${p.dayPct}% van dag verstreken</div>
+                    </td>
+                    <td><span class="priority-badge ${priorityClass}">${p.advice}</span></td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </section>
+
+        <section class="analysis-tip">
+          <span class="analysis-tip-icon">💡</span>
+          <div>
+            <strong>Lezen van deze tabel:</strong> hoe verder de balk naar rechts staat,
+            hoe vroeger op de dag het product uitverkocht raakt — en hoe groter de gemiste omzet.
+            Producten met een rode balk verdienen direct aandacht.
+          </div>
+        </section>
+      `;
+    }
+
+    function renderPlaceholder(title, description) {
+      return `
+        <section class="analysis-placeholder">
+          <div class="analysis-placeholder-icon">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+          </div>
+          <h2 class="analysis-placeholder-title">${title}</h2>
+          <p class="analysis-placeholder-text">${description}</p>
+          <p class="analysis-placeholder-tag">Deze analyse komt binnenkort beschikbaar.</p>
+        </section>
+      `;
+    }
+
+    function renderAnalysis() {
+      const content = document.getElementById('analysisContent');
+      switch (currentAnalysis) {
+        case 'uitverkocht':
+          content.innerHTML = renderUitverkocht();
+          break;
+        case 'retouren':
+          content.innerHTML = renderPlaceholder(
+            'Wat zijn mijn retouren?',
+            'Een diepere analyse van retour-patronen: welke producten, op welk moment, en wat kost het je per maand. Hiermee krijg je grip op vermijdbare retour-kosten.'
+          );
+          break;
+        case 'winkels':
+          content.innerHTML = renderPlaceholder(
+            'Winkels t.o.v. elkaar',
+            'Vergelijk je winkels op omzet, marge, aantal klanten en gemiddelde besteding. Zo zie je welke winkel waar in uitblinkt — en wat de andere winkels daarvan kunnen leren.'
+          );
+          break;
+        case 'omzet':
+          content.innerHTML = renderPlaceholder(
+            'Hoe haal ik meer omzet?',
+            'Concrete suggesties op basis van je eigen data: prijsstelling, productie-aanpassingen, cross-sell kansen en uitbreidingsmogelijkheden — gerangschikt op verwachte impact.'
+          );
+          break;
+      }
+    }
+
+    // ===== Wiring =====
+    function setupAnalysisDropdown() {
+      const dropdown = document.getElementById('analysisDropdown');
+      const trigger = dropdown.querySelector('.analysis-dropdown-btn');
+      const menu = dropdown.querySelector('.analysis-dropdown-menu');
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+      document.addEventListener('click', () => dropdown.classList.remove('open'));
+
+      menu.querySelectorAll('button[data-analysis]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentAnalysis = btn.dataset.analysis;
+          document.getElementById('currentAnalysisName').textContent = btn.textContent.trim();
+          menu.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+          dropdown.classList.remove('open');
+          renderAnalysis();
+        });
+      });
+    }
+
+    function setupStoreTabs() {
+      document.querySelectorAll('.analysis-stores .store-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          currentStore = tab.dataset.store;
+          document.querySelectorAll('.analysis-stores .store-tab').forEach(t => {
+            t.classList.toggle('active', t === tab);
+          });
+          renderAnalysis();
+        });
+      });
+    }
+
+    function setupPeriodToggle() {
+      document.querySelectorAll('.period-toggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentPeriod = btn.dataset.period;
+          document.querySelectorAll('.period-toggle button').forEach(b => {
+            b.classList.toggle('active', b === btn);
+          });
+          document.getElementById('datePickerLabel').textContent = PERIOD_LABELS[currentPeriod];
+          document.getElementById('footerPeriod').textContent = PERIOD_FOOTER[currentPeriod];
+          renderAnalysis();
+        });
+      });
+    }
+
+    setupAnalysisDropdown();
+    setupStoreTabs();
+    setupPeriodToggle();
+    renderAnalysis();
+  </script>
+</body>
+</html>

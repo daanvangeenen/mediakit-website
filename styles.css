@@ -1104,6 +1104,276 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .table .num.up { color: var(--green); font-weight: 600; }
 .table .num.down { color: #c0392b; font-weight: 600; }
 
+/* ===== Analyses page ===== */
+.analysis-controls {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.analysis-question {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.analysis-question-label {
+  font-size: 13px;
+  color: var(--text-soft);
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+.analysis-dropdown { position: relative; }
+.analysis-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: var(--cream-light);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color .15s ease, box-shadow .15s ease;
+  text-align: left;
+}
+.analysis-dropdown-btn:hover { border-color: var(--wine-border); }
+.analysis-dropdown.open .analysis-dropdown-btn {
+  border-color: var(--wine);
+  box-shadow: 0 0 0 3px rgba(110, 22, 34, 0.08);
+}
+.analysis-dropdown-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: #f5d6b2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 36px;
+}
+.analysis-dropdown-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.analysis-dropdown-caret {
+  color: var(--text-soft);
+  transition: transform .15s ease;
+}
+.analysis-dropdown.open .analysis-dropdown-caret { transform: rotate(180deg); }
+
+.analysis-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.10);
+  padding: 6px;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 20;
+}
+.analysis-dropdown.open .analysis-dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.analysis-dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 1.3;
+}
+.analysis-dropdown-menu button:hover { background: var(--cream-light); color: var(--wine); }
+.analysis-dropdown-menu button.active {
+  background: var(--wine);
+  color: #fff;
+}
+
+.analysis-stores {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.analysis-stores-label {
+  font-size: 13px;
+  color: var(--text-soft);
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+/* Mini variant of store tabs */
+.store-tabs.mini { gap: 8px; }
+.store-tabs.mini .store-tab {
+  padding: 10px 8px 8px;
+  font-size: 12px;
+  gap: 4px;
+  border-radius: 10px;
+}
+
+/* Analysis intro section */
+.analysis-intro {
+  background: var(--cream-light);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.analysis-intro-badge {
+  width: 44px; height: 44px;
+  flex: 0 0 44px;
+  background: var(--wine);
+  color: #f5d6b2;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.analysis-intro-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+.analysis-intro-sub {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 0;
+}
+.analysis-intro-sub strong { color: var(--wine); font-weight: 600; }
+
+/* Uitverkocht table */
+.uitverkocht-table .bar-col { width: 30%; }
+.urgency-bar-track {
+  height: 8px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.urgency-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+.urgency-bar-fill.priority-high   { background: linear-gradient(90deg, #c0392b, #6e1622); }
+.urgency-bar-fill.priority-medium { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.urgency-bar-fill.priority-low    { background: linear-gradient(90deg, #6ee7b7, #34d399); }
+.urgency-meta {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+
+.priority-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.priority-badge.priority-high {
+  background: rgba(192, 57, 43, 0.10);
+  color: #c0392b;
+}
+.priority-badge.priority-medium {
+  background: rgba(217, 119, 6, 0.10);
+  color: #b45309;
+}
+.priority-badge.priority-low {
+  background: rgba(42, 138, 62, 0.10);
+  color: var(--green);
+}
+
+/* Tip card */
+.analysis-tip {
+  background: var(--cream-light);
+  border: 1px dashed var(--wine-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.analysis-tip-icon { font-size: 18px; flex: 0 0 auto; }
+.analysis-tip strong { color: var(--wine); }
+
+/* Placeholder for analyses not yet built */
+.analysis-placeholder {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 48px 28px;
+  text-align: center;
+}
+.analysis-placeholder-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 16px;
+  background: var(--wine-soft);
+  color: var(--wine);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.analysis-placeholder-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+.analysis-placeholder-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 540px;
+  margin: 0 auto 16px;
+}
+.analysis-placeholder-tag {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wine);
+  background: var(--wine-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .analysis-controls { grid-template-columns: 1fr; }
+}
+
 /* Hours table specifics */
 .hours-table .rank-top {
   color: var(--wine);
