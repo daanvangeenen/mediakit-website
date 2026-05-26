@@ -1305,6 +1305,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .analysis-card-list strong { color: var(--wine); font-weight: 600; }
 
+/* Card lead text (used when no metric block) */
+.analysis-card-lead {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Action tip line on a card */
+.analysis-card-action {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: var(--wine-soft);
+  border-radius: 9px;
+  font-size: 12.5px;
+  color: var(--text);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.analysis-card-action .action-icon { font-size: 14px; flex: 0 0 auto; line-height: 1.4; }
+.analysis-card-action strong { color: var(--wine); font-weight: 600; }
+
 /* Ranked variant (winkels-vergelijking card) */
 .analysis-card-list.ranked li {
   padding-left: 0;

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.css?v=15" />
   <script>
     (function() {
       try {
@@ -123,7 +123,7 @@
 
       <!-- 4 ANALYSIS CARDS (2x2 grid) -->
       <section class="analyses-grid">
-        <!-- Card 1: omzet (top-left) -->
+        <!-- Card 1: Hoe haal ik meer omzet? (top-left) -->
         <a href="#" class="analysis-card">
           <div class="analysis-card-head">
             <span class="analysis-card-icon">
@@ -132,14 +132,11 @@
             <h3 class="analysis-card-title">Hoe haal ik meer omzet?</h3>
           </div>
           <div class="analysis-card-body">
-            <div class="analysis-card-metric">
-              <span class="metric-value">+ € 6.800</span>
-              <span class="metric-unit">per maand mogelijk</span>
-            </div>
+            <p class="analysis-card-lead">Drie concrete kansen op basis van je data deze maand:</p>
             <ul class="analysis-card-list">
-              <li><strong>+ € 2.400</strong> — Meer croissants bakken (raken al om 10:30 op)</li>
-              <li><strong>+ € 1.900</strong> — Besteding-aanpak van Lent toepassen in andere winkels</li>
-              <li><strong>+ € 2.500</strong> — Boterprijs (+8%) doorrekenen in prijzen gebak</li>
+              <li><strong>Meer croissants bakken</strong> — ze raken al om 10:30 op. Vraag overtreft aanbod.</li>
+              <li>Tussen <strong>09:00 en 12:00</strong> ligt de gemiddelde transactiewaarde structureel lager dan gemiddeld — denk na over acties om dit te verhogen (ontbijtdeal, koffie-combi, gebak van de week).</li>
+              <li><strong>Boterprijs</strong> stijgt — overweeg dit door te rekenen in de prijzen van gebak om de marge te beschermen.</li>
             </ul>
           </div>
           <div class="analysis-card-footer">
@@ -147,31 +144,35 @@
           </div>
         </a>
 
-        <!-- Card 2: uitverkocht (top-right) -->
-        <a href="analyse-uitverkocht.html" class="analysis-card">
+        <!-- Card 2: Hoge verkoop, lage marge (top-right) -->
+        <a href="#" class="analysis-card">
           <div class="analysis-card-head">
             <span class="analysis-card-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7c-1.5-2-3.5-3-6-3-4 0-7 3-7 8s3 8 7 8c2.5 0 4.5-1 6-3"/><line x1="3" y1="10" x2="14" y2="10"/><line x1="3" y1="14" x2="14" y2="14"/></svg>
             </span>
-            <h3 class="analysis-card-title">Wanneer is mijn product uitverkocht?</h3>
+            <h3 class="analysis-card-title">Welke producten verkopen veel maar leveren weinig op?</h3>
           </div>
           <div class="analysis-card-body">
             <div class="analysis-card-metric">
-              <span class="metric-value">10 producten</span>
-              <span class="metric-unit">verkopen regelmatig uit — 4 met prioriteit</span>
+              <span class="metric-value">3 producten</span>
+              <span class="metric-unit">hoge verkopen, krappe marge</span>
             </div>
             <ul class="analysis-card-list">
-              <li><strong>Croissant</strong> — gem. uitverkocht om <strong>10:30</strong></li>
-              <li><strong>Bruin desem</strong> — gem. uitverkocht om <strong>11:30</strong></li>
-              <li><strong>Slagroomtaart 8p</strong> — gem. uitverkocht om <strong>12:45</strong></li>
+              <li><strong>Bruin desem</strong> — 820× verkocht, 42% marge</li>
+              <li><strong>Wit casino</strong> — 594× verkocht, 40% marge</li>
+              <li><strong>Worstenbroodje</strong> — 414× verkocht, 46% marge</li>
             </ul>
+            <p class="analysis-card-action">
+              <span class="action-icon">💡</span>
+              <span><strong>Acties:</strong> prijs verhogen, scherper inkopen of bijverkoop stimuleren bij deze producten.</span>
+            </p>
           </div>
           <div class="analysis-card-footer">
             <span class="analysis-card-cta">Bekijk volledige analyse →</span>
           </div>
         </a>
 
-        <!-- Card 3: retouren (bottom-left) -->
+        <!-- Card 3: Retouren (bottom-left) -->
         <a href="#" class="analysis-card">
           <div class="analysis-card-head">
             <span class="analysis-card-icon">
@@ -195,24 +196,23 @@
           </div>
         </a>
 
-        <!-- Card 4: winkels vergelijken (bottom-right) -->
-        <a href="#" class="analysis-card">
+        <!-- Card 4: Uitverkocht (bottom-right) -->
+        <a href="analyse-uitverkocht.html" class="analysis-card">
           <div class="analysis-card-head">
             <span class="analysis-card-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
             </span>
-            <h3 class="analysis-card-title">Hoe doen mijn winkels het t.o.v. elkaar?</h3>
+            <h3 class="analysis-card-title">Wanneer is mijn product uitverkocht?</h3>
           </div>
           <div class="analysis-card-body">
             <div class="analysis-card-metric">
-              <span class="metric-value">4 winkels</span>
-              <span class="metric-unit">+ webshop, deze maand vergeleken</span>
+              <span class="metric-value">10 producten</span>
+              <span class="metric-unit">verkopen regelmatig uit — 4 met prioriteit</span>
             </div>
-            <ul class="analysis-card-list ranked">
-              <li><span class="rank-medal gold">1</span><strong>Lent</strong> — grootste groei <span class="metric-trend up">+9,2%</span></li>
-              <li><span class="rank-medal silver">2</span><strong>Ziekerstraat</strong> — hoogste omzet (€ 19.420)</li>
-              <li><span class="rank-medal bronze">3</span><strong>Heyendaal</strong> — stabiel <span class="metric-trend up">+4,1%</span></li>
-              <li><span class="rank-medal warn">!</span><strong>Daalseweg</strong> — let op <span class="metric-trend down">−1,3%</span></li>
+            <ul class="analysis-card-list">
+              <li><strong>Croissant</strong> — gem. uitverkocht om <strong>10:30</strong></li>
+              <li><strong>Bruin desem</strong> — gem. uitverkocht om <strong>11:30</strong></li>
+              <li><strong>Slagroomtaart 8p</strong> — gem. uitverkocht om <strong>12:45</strong></li>
             </ul>
           </div>
           <div class="analysis-card-footer">
@@ -233,7 +233,7 @@
     </main>
   </div>
 
-  <script src="auth.js?v=14"></script>
+  <script src="auth.js?v=15"></script>
   <script>
     // Store tabs - visual state only for now; the detail pages will use it
     document.querySelectorAll('.store-tab').forEach(tab => {
