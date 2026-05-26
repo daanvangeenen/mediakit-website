@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=16" />
   <script>
     (function() {
       try {
@@ -132,10 +132,11 @@
             <h3 class="analysis-card-title">Hoe haal ik meer omzet?</h3>
           </div>
           <div class="analysis-card-body">
-            <p class="analysis-card-lead">Drie concrete kansen op basis van je data deze maand:</p>
+            <p class="analysis-card-lead">Concrete kansen op basis van je data deze maand:</p>
             <ul class="analysis-card-list">
               <li><strong>Meer croissants bakken</strong> — ze raken al om 10:30 op. Vraag overtreft aanbod.</li>
               <li>Tussen <strong>09:00 en 12:00</strong> ligt de gemiddelde transactiewaarde structureel lager dan gemiddeld — denk na over acties om dit te verhogen (ontbijtdeal, koffie-combi, gebak van de week).</li>
+              <li><strong>Nougatine taart</strong> loopt in de Ziekerstraat veel harder dan op de Daalseweg. Ligt dit wellicht aan de positie van het product in de winkel?</li>
               <li><strong>Boterprijs</strong> stijgt — overweeg dit door te rekenen in de prijzen van gebak om de marge te beschermen.</li>
             </ul>
           </div>
@@ -183,13 +184,17 @@
           <div class="analysis-card-body">
             <div class="analysis-card-metric">
               <span class="metric-value">€ 482</span>
-              <span class="metric-unit">retouren deze week <span class="metric-trend up">↑ +4,2%</span></span>
+              <span class="metric-unit">retouren deze week — <strong>gelijk aan vorige periode</strong>, maar de kostprijs van retour-producten ligt <strong>+12% hoger</strong>. Retouren kosten je dus meer dan eerder.</span>
             </div>
             <ul class="analysis-card-list">
-              <li><strong>Slagroomtaart 8p</strong> — € 105 (3 niet opgehaald)</li>
-              <li><strong>Tompouce</strong> — € 64 (te zacht / niet vers)</li>
-              <li><strong>Bruin desem</strong> — € 58 (verkeerd brood)</li>
+              <li><strong>Slagroomtaart 8p</strong> — <strong style="color:#c0392b;">hoge kostprijs</strong> (€ 14,50/stuk)</li>
+              <li><strong>Tompouce</strong> — gemiddelde kostprijs (€ 1,80/stuk)</li>
+              <li><strong>Bruin desem</strong> — <strong style="color:var(--green);">lage kostprijs</strong> (€ 1,15/stuk)</li>
             </ul>
+            <p class="analysis-card-action">
+              <span class="action-icon">💡</span>
+              <span><strong>Acties:</strong> retouren met hoge kostprijs strenger beoordelen, lage-kostprijs items soepel accepteren voor klanttevredenheid.</span>
+            </p>
           </div>
           <div class="analysis-card-footer">
             <span class="analysis-card-cta">Bekijk volledige analyse →</span>
@@ -233,7 +238,7 @@
     </main>
   </div>
 
-  <script src="auth.js?v=15"></script>
+  <script src="auth.js?v=16"></script>
   <script>
     // Store tabs - visual state only for now; the detail pages will use it
     document.querySelectorAll('.store-tab').forEach(tab => {
