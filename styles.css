@@ -678,10 +678,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateX(2px);
 }
 
-@media (max-width: 1100px) {
-  .hero-row { grid-template-columns: 1fr; }
-}
-
 /* topbar */
 .topbar {
   display: flex;
