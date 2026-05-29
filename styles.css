@@ -294,27 +294,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .brand {
-  text-align: center;
-  padding: 8px 0 22px;
-  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 18px;
+  margin-bottom: 8px;
 }
-.brand-crown { display: flex; justify-content: center; margin-bottom: 6px; }
-/* Override inline SVG colors to dark */
-.brand-crown svg path { stroke: var(--text); }
-.brand-crown svg circle { fill: var(--text); }
-
+.brand-logo { display: inline-flex; }
 .brand-name {
   font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  letter-spacing: 5px;
+  font-size: 17px;
+  letter-spacing: 0.4px;
   color: var(--text);
   font-weight: 700;
-}
-.brand-sub {
-  font-size: 9px;
-  letter-spacing: 4px;
-  color: var(--text-soft);
-  margin-top: 2px;
 }
 
 .nav { display: flex; flex-direction: column; gap: 4px; }
@@ -695,6 +687,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: flex-start;
   gap: 24px;
 }
+.page-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 .page-title {
   font-family: 'Inter', sans-serif;
   font-size: 30px;
@@ -703,8 +701,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text);
   letter-spacing: -.5px;
 }
+.client-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 8px;
+  background: #fff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(20, 24, 27, 0.04);
+}
+.client-pill::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  background-image: linear-gradient(135deg, var(--accent), var(--accent-soft));
+}
 .page-sub {
-  margin: 3px 0 0;
+  margin: 6px 0 0;
   font-size: 13px;
   color: var(--text-soft);
 }
