@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=22" />
   <script>
     (function() {
       try {
@@ -188,7 +188,7 @@
     </main>
   </div>
 
-  <script src="auth.js?v=21"></script>
+  <script src="auth.js?v=22"></script>
   <script>
     // ===== Per-store klanten data =====
     const KLANTEN_STORES = {
@@ -292,13 +292,13 @@
 
     // ===== Chart setup =====
     const ctx = document.getElementById('klantenChart').getContext('2d');
-    const wine = '#6e1622';
+    const wine = '#14181b';
     const gray = '#c9b2b2';
     const days = ['Ma 14', 'Di 15', 'Wo 16', 'Do 17', 'Vr 18', 'Za 19', 'Zo 20'];
 
     const gradient = ctx.createLinearGradient(0, 0, 0, 280);
-    gradient.addColorStop(0, 'rgba(110, 22, 34, 0.22)');
-    gradient.addColorStop(1, 'rgba(110, 22, 34, 0)');
+    gradient.addColorStop(0, 'rgba(245, 212, 78, 0.30)');
+    gradient.addColorStop(1, 'rgba(245, 212, 78, 0)');
 
     const chart = new Chart(ctx, {
       type: 'line',
