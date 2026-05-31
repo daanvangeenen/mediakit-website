@@ -644,10 +644,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-left-width: 3px;
   border-radius: 12px;
   padding: 9px 12px 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 .attention-item.high   { border-left-color: #f87171; }
 .attention-item.medium { border-left-color: var(--accent); }
 .attention-item.low    { border-left-color: #34d399; }
+.attention-item-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.attention-item-body { flex: 1; min-width: 0; }
 .attention-item-title {
   font-size: 13px;
   font-weight: 600;

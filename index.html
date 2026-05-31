@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="styles.css?v=24" />
   <script>
     // Early auth guard — runs before render to prevent flash
     (function() {
@@ -170,24 +170,29 @@
           <div class="hero-attention-badge">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
-          <h2 class="hero-attention-title">Aandachtspunten deze week</h2>
+          <h2 class="hero-attention-title">Je top 3 aandachtspunten van deze week</h2>
 
           <ul class="attention-list">
             <li class="attention-item high">
-              <div class="attention-item-title">Boterprijs +8% deze maand</div>
-              <p class="attention-item-text">Inkoopprijs roomboter stijgt — dit raakt direct de marge op gebak. Overweeg een prijsaanpassing.</p>
+              <span class="attention-item-num">1</span>
+              <div class="attention-item-body">
+                <div class="attention-item-title">Boterprijs +8% deze maand</div>
+                <p class="attention-item-text">Inkoopprijs roomboter stijgt — dit raakt direct de marge op gebak. Overweeg een prijsaanpassing.</p>
+              </div>
             </li>
             <li class="attention-item medium">
-              <div class="attention-item-title">4 producten regelmatig uitverkocht</div>
-              <p class="attention-item-text">Croissant raakt al om 10:30 op. Meer productie kan extra omzet opleveren.</p>
+              <span class="attention-item-num">2</span>
+              <div class="attention-item-body">
+                <div class="attention-item-title">4 producten regelmatig uitverkocht</div>
+                <p class="attention-item-text">Croissant raakt al om 10:30 op. Meer productie kan extra omzet opleveren.</p>
+              </div>
             </li>
             <li class="attention-item medium">
-              <div class="attention-item-title">Daalseweg krimpt — 3e week op rij</div>
-              <p class="attention-item-text">Omzet −1,3% vs. vorig jaar. Een actie of campagne overwegen?</p>
-            </li>
-            <li class="attention-item low">
-              <div class="attention-item-title">Retouren Heyendaal hoog</div>
-              <p class="attention-item-text">Retouren +5,2% — iets boven het gemiddelde van je andere winkels.</p>
+              <span class="attention-item-num">3</span>
+              <div class="attention-item-body">
+                <div class="attention-item-title">Daalseweg krimpt — 3e week op rij</div>
+                <p class="attention-item-text">Omzet −1,3% vs. vorig jaar. Een actie of campagne overwegen?</p>
+              </div>
             </li>
           </ul>
 
@@ -281,7 +286,7 @@
     </main>
   </div>
 
-  <script src="app.js?v=23"></script>
-  <script src="auth.js?v=23"></script>
+  <script src="app.js?v=24"></script>
+  <script src="auth.js?v=24"></script>
 </body>
 </html>
