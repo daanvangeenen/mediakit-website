@@ -1,207 +1,201 @@
 # CLAUDE.md
 
-Context for Claude when working on this project. Keep this up to date when you make significant decisions.
+Context for Claude when working on this project. **Keep this up to date** when you make significant decisions. This file was last fully rewritten to match the cream/black/yellow "Yieldbase" restyle.
 
 ## What this project is
 
-A dashboard mockup for **Yield** (the software company — placeholder name) that shows POS-data insights to bakeries and patisseries in the Netherlands. The demo customer is **Strik Patisserie**, a fictional patisserie with 4 physical stores (Ziekerstraat, Heyendaal, Lent, Daalseweg) and a webshop.
+A dashboard prototype for **Yieldbase** — a software company (owned by Daan) that turns POS data into insights for bakeries and patisseries in the Netherlands. The demo customer shown throughout the app is **Strik Patisserie**, a fictional patisserie with **4 physical stores** (Ziekerstraat, Heyendaal, Lent, Daalseweg) and a **webshop**.
 
-**Goal of the software:** give bakers visibility into store revenue, customer behavior, returns, and product performance — so they can spot opportunities to grow margin and revenue.
+**Goal of the software:** give bakers visibility into revenue, customer behaviour, returns, and product performance — so they can spot opportunities to grow margin and revenue.
 
-This repo is a **static HTML/CSS/JS prototype** — no build step, no backend. It's deployed via GitHub Pages.
+This repo is a **static HTML/CSS/JS prototype** — no build step, no framework, no backend. Deployed via GitHub Pages. It is intentionally tooling-free so Daan can read/edit the files himself one day.
 
 ## Who you're working for
 
-**Daan** (`daan@software.nl`). Important things to remember about him:
+**Daan** (`daan@software.nl`). Things to remember:
 
-- **Non-technical** — does not code, does not want to learn. Always implement, never explain implementation unless asked.
-- **Speaks Dutch.** All UI copy is Dutch. Conversation is mixed Dutch/English.
-- **Wants minimal permission prompts.** "Code everything for me. Do not ask for permissions (or as little as possible)."
-- **Iterates fast on UI** — willing to redo layouts. Feedback comes in short Dutch bullet lists.
-- **Two recurring requests:** "het moet zo simpel mogelijk zijn" (must be as simple as possible) AND it shouldn't feel "leeg" (empty). Balance: clean structure, generous sizing, no clutter.
-- **Doesn't understand browser caching.** Multiple times asked "why don't I see the changes?" → cache. This is why every CSS/JS reference has `?v=N`.
+- **Non-technical** — does not code, does not want to learn. Always implement, never explain implementation unless asked. "Code everything for me. Do not ask for permissions (or as little as possible)."
+- **Speaks Dutch.** All UI copy is Dutch (informal "je/jouw"). Conversation is mixed Dutch/English.
+- **Iterates fast on UI** — willing to redo layouts. Feedback arrives as short Dutch bullet lists.
+- **Two recurring tensions:** "het moet zo simpel mogelijk zijn" (as simple as possible) AND it shouldn't feel "leeg" (empty). Balance: clean structure, generous sizing, no clutter.
+- **Doesn't understand browser caching.** He has repeatedly asked "waarom zie ik de wijzigingen niet?" → it's always cache. This is why every CSS/JS reference carries `?v=N`, and why after every push you share the live link with a fresh throwaway query (e.g. `?x=24`).
 
 ## Deployment
 
 - **GitHub repo:** https://github.com/daanvangeenen/mediakit-website
 - **Live URL:** https://daanvangeenen.github.io/mediakit-website/
-- **GitHub Pages** is enabled on `main` branch, root path. Builds automatically on push (~30–60s after push).
+- **GitHub Pages** serves `main` branch, root path. Builds automatically ~30–60s after push.
 - `gh` CLI is installed and authenticated as `daanvangeenen`. `gh auth setup-git` is configured so `git push` works without prompting.
 
 ### Git commit convention used here
 
-Commits are created with explicit author flags (not global config):
+Commits use explicit author flags (not global git config), plain `-m` messages, no Co-Authored-By trailer:
 
 ```bash
+git add -A
 git -c user.email="daan@local" -c user.name="Daan" commit -m "..."
+git push
 ```
 
-Plain `-m` messages, no Co-Authored-By trailer in this repo.
+**Don't commit unless asked** — but in practice Daan expects changes pushed so he can see them live, and has told me "do not ask for permissions". When a change is clearly the deliverable, commit + push and then hand over the link.
 
 ### Cache-busting — MUST do on every change
 
-Every `<link>` and `<script>` tag references files with a `?v=N` version query string. **Bump `N` everywhere whenever you modify `styles.css`, `app.js`, `auth.js`, or any file referenced cross-page.** Current version: **`v=9`**.
+Every `<link>` and `<script>` references files with a `?v=N` query string, identical across all pages. **Bump `N` everywhere whenever you touch any shared/cross-page file (`styles.css`, `app.js`, `auth.js`).** Bump it on every page even for an HTML-only change, to keep them in lockstep.
 
-After a push, also share the live link with a fresh `?something=N` so the browser doesn't serve the cached HTML.
+Current version: **`v=24`**.
+
+One-liner to bump every HTML file:
+
+```bash
+for f in *.html; do sed -i '' 's/?v=23/?v=24/g' "$f"; done
+```
+
+After pushing, give Daan the URL with a *separate* throwaway query (e.g. `.../index.html?x=24`) so his browser doesn't serve the cached HTML document itself.
 
 ## Folder structure
 
 ```
 mediakit-website/
-├── index.html        Dashboard — landing page after login
-├── login.html        Yield-branded login screen
-├── omzet.html        Omzet (revenue) detail page
-├── klanten.html      Aantal klanten (customer count) detail page
-├── besteding.html    Besteding per klant (avg spend per customer) detail
-├── retouren.html     Retouren (returns) detail page
-├── app.js            Dashboard logic — store switching, KPI rendering, hero text
-├── auth.js           Client-side auth — login form, logout dropdown, guard helper
-├── styles.css        ALL styles, shared across every page
-├── README.md         Short readme
-├── CLAUDE.md         This file
-└── .gitignore        Standard ignores
+├── index.html               Dashboard — landing page after login
+├── login.html               Yieldbase-branded login screen
+├── omzet.html               Omzet (revenue) detail page
+├── klanten.html             Aantal klanten (customer count) detail page
+├── besteding.html           Besteding per klant (avg spend per customer) detail
+├── retouren.html            Retouren (returns) detail page
+├── analyses.html            Analyses landing — 2×2 grid of insight cards
+├── analyse-uitverkocht.html "Wanneer is mijn product uitverkocht?" deep-dive
+├── app.js                   Dashboard logic — store switching, KPI + hero rendering
+├── auth.js                  Client-side auth — login form, logout dropdown, guard
+├── styles.css               ALL styles, shared across every page
+├── README.md                Short readme
+├── CLAUDE.md                This file
+└── .gitignore
 ```
 
-There is no build step. Open `index.html` in a browser or `python3 -m http.server 8000` — that's it.
+No build step. Open `index.html` directly, or `python3 -m http.server 8000`.
+
+There is **no shared HTML template** — the sidebar, head, fonts, and auth guard are duplicated in every page. When you change one of those, change it in **every** page.
 
 ## Pages
 
-### 1. `login.html` — Yield-branded gate
+### `login.html` — Yieldbase gate
+- Split-screen: left = **Yieldbase brand panel** (dark slate `#0f172a` with emerald radial glows), right = login form.
+- **Yieldbase branding lives ONLY here.** Once logged in, the app is Strik-Patisserie-facing.
+- Wordmark: `YIELDBASE` (Inter 700, letter-spaced). Tagline + subtagline in white/slate.
+- **No visible demo credentials** (the hint was removed at Daan's request).
+- Inverse auth guard: if already logged in, redirects to `index.html`.
 
-- Split-screen: left = Yield brand panel (dark slate), right = login form (cream).
-- **Yield branding only here.** Once logged in, everything is Strik Patisserie themed.
-- Yield logo = 3 ascending green bars + "YIELD" wordmark.
-- Demo hint visible at bottom of form: `daan@software.nl / daan123`.
-
-### 2. `index.html` — Dashboard
-
-Layout top to bottom:
-1. **Client banner pill:** `KLANT · Strik Patisserie` (small wine-coloured pill, signals which bakery's data this is)
-2. **Topbar:** "Dashboard" title + date picker (`14 apr – 20 apr 2025`) + Dag/Week/Maand/YTD toggle
-3. **Store tabs:** 5 equal-width cards in a row — `Totaal | Ziekerstraat | Heyendaal | Lent | Daalseweg`. Active = wine background.
-4. **Hero insight panel** (cream background):
-   - "Hallo Daan,"
-   - Intro line that adapts per store ("Het was een goede week voor de winkels!", "Lent is de grootste stijger van deze week!", etc.)
-   - 4 bullets summarizing the KPIs
-   - Closing line: "Wil je meer weten over een specifiek onderdeel? Klik op een van de blokjes hieronder."
-   - Sparkle badge top-right
-5. **4 KPI cards** (all clickable links to detail pages):
-   - **Omzet** → `omzet.html` (has "Klik om details te zien" hint with arrow, wine border)
+### `index.html` — Dashboard (landing after login)
+Top to bottom:
+1. **Topbar:** `Dashboard` title + a white **`.client-pill` "Strik Patisserie"** chip beside it; subtitle "Inzicht in prestaties van je winkels"; on the right a date picker (`14 apr – 20 apr 2025`) + Dag/Week/Maand/YTD toggle (Week active).
+2. **Store tabs** (`.store-tabs.compact`): 5 equal cells — `Totaal | Ziekerstraat | Heyendaal | Lent | Daalseweg`. Active = dark background. (Webshop is folded into Totaal, not selectable.)
+3. **`.hero-row`** — two side-by-side cards:
+   - **`.hero-insight`** (light card): "Hallo Daan," (Playfair greeting) + an intro line that adapts per store + 4 bullets summarising KPIs + a closing line ("Klik op een van de blokjes hieronder…").
+   - **`.hero-attention`** (dark card): title **"Je top 3 aandachtspunten van deze week"**, then **3 numbered items** (`.attention-item` with a yellow circular `.attention-item-num` badge 1/2/3 + `.attention-item-body`). Items carry `.high/.medium/.low` for the coloured left border (red/yellow/green). Bottom CTA "Bekijk alle analyses →" links to `analyses.html`.
+4. **4 KPI cards** (`.kpi-card.kpi-link`, all clickable):
+   - **Omzet** → `omzet.html`
    - **Aantal klanten** → `klanten.html`
    - **Besteding per klant** → `besteding.html`
    - **Retouren** → `retouren.html`
-6. **Footer:** comparison period notice + "Wijzig vergelijking in instellingen" link
 
-### 3. `omzet.html` — Revenue detail
+Logic lives in `app.js` (see "Store-switching" below).
 
-Sections in order:
-- Client banner, back-link, topbar (with date picker + period toggle)
-- **Store tabs** (same 5 tabs, page-local state — does NOT sync with dashboard selection)
-- **Hero number:** big `€ 67.450` (Playfair 52px, wine) + green/red delta pill
-- **Line chart** "Omzet per dag" — this week (solid wine) vs. last year (grey dashed). Chart.js, line+area gradient.
-- **Top 10 producten** table — numbers scale per store by `ratio` (store omzet / total omzet)
-- **CTA banner** (wine gradient): "Wil je verder uitzoeken waar mogelijkheden liggen tot meer omzet? Klik dan hier of klik op het tabje 'Analyse omzet' in het menu links." With "Naar Analyse omzet →" button.
-- Footer
+### `omzet.html` — Revenue detail
+- Back-link, topbar (date picker + period toggle), **store tabs** (page-local state, does NOT sync with dashboard).
+- **Hero number** `€ 67.450` + green/red delta pill.
+- **CTA banner** (dark gradient) sits **between the hero number and the chart** — "Wil je verder uitzoeken waar mogelijkheden liggen tot meer omzet?" with button to analyses.
+- **Line chart** "Omzet per dag" — this week (solid dark `#14181b`) vs. last year (grey dashed), yellow area fill `rgba(245,212,78,0.30)`. Chart.js.
+- **Top 10 producten** table, scaled per store by ratio.
 
-### 4. `klanten.html` — Customer count detail
+### `klanten.html` — Customer count detail
+- Hero `4.895` + delta; line chart (klanten per dag); **peak-hours table** (07:00–18:00, sorted by visitors desc, with rank, count, % of week, bar).
 
-- Hero: `4.895` + delta
-- Line chart: klanten per dag
-- **Peak hours table** — all opening hours 07:00–18:00, sorted by visitor count descending, with:
-  - Rank (top 3 in wine)
-  - Time block
-  - Klanten count (scaled by store ratio)
-  - % of weekly total
-  - Visual bar (wine gradient)
+### `besteding.html` — Average spend detail
+- Hero `€ 13,78` + delta; line chart (gem. besteding per dag, € axis); **hours table sorted by highest avg spend** with % diff vs weekly avg. Insight: 14:00–15:00 highest (cake/special orders), early morning lowest (bread runs).
 
-### 5. `besteding.html` — Average spend per customer detail
+### `retouren.html` — Returns detail
+- Hero `€ 482` + delta; line chart (retour-waarde per dag); **top retour products table** (stuks, waarde, % of returns, meest voorkomende reden). Insight: one un-collected slagroomtaart can be the biggest single cost.
 
-- Hero: `€ 13,78` + delta
-- Line chart: gemiddelde besteding per dag (€ values, Y-axis in €,XX)
-- **Hours table** sorted by **highest avg spend**, with % difference vs weekly average. Insight: middag (14:00–15:00) has highest spend (cake/special orders), vroege ochtend lowest (bread runs).
+### `analyses.html` — Analyses landing
+- **No store tabs** (removed per request). A 2×2 grid of insight cards:
+  - **Top-left — "Hoe haal ik meer omzet?"** text-led, 4 bullets incl. Nougatine-taart in Ziekerstraat vs Daalseweg (shelf position?) and lower transaction value 09:00–12:00.
+  - **Top-right — "Welke productmarges staan onder druk?"** Tompouce / Slagroomtaart / Eclair with declining margins.
+  - **Bottom-left — "Hoe gaat het met retouren?"** framed around kostprijs (accept high-costprice returns less readily).
+  - **Bottom-right — "Wanneer is mijn product uitverkocht?"** → `analyse-uitverkocht.html`.
+- Big standalone numbers were removed from cards 2/3/4 at Daan's request.
 
-### 6. `retouren.html` — Returns detail
+### `analyse-uitverkocht.html` — Uitverkocht deep-dive
+- Store tabs + period toggle (**default Maand**), top-10 table with urgency bars (which products sell out, how early).
 
-- Hero: `€ 482` + delta
-- Line chart: retour-waarde per dag
-- **Top retour products table** — sorted by return value:
-  - Stuks retour
-  - Waarde retour
-  - % of weekly returns
-  - Meest voorkomende reden (e.g., "Niet opgehaald", "Te zacht / niet vers", "Verkeerd brood")
-- Insight: 1 niet-opgehaalde slagroomtaart can be the largest single cost.
+## Design system (current = cream / black / yellow, Crextio-style)
 
-## Design system
+The app was restyled away from the original wine/red look to a soft cream background with near-black text and a buttery-yellow accent.
 
-### Colors (CSS variables in `styles.css :root`)
-
-**Strik Patisserie (the customer — used everywhere except login):**
+### Colors — `styles.css :root`
 
 | Variable | Value | Use |
 |---|---|---|
-| `--wine` | `#6e1622` | Primary brand colour, sidebar, accents, value numbers |
-| `--wine-deep` | `#5c111c` | Hover states for wine buttons |
-| `--wine-soft` | `#f7e9e9` | Light pink for icon circle backgrounds |
-| `--wine-border` | `#e9d3d3` | Soft borders on hover |
-| `--cream` | `#f7f1ea` | Main page background |
-| `--cream-light` | `#fbf6f0` | Card backgrounds (e.g. hero insight, table row hover) |
-| `--text` | `#2b1414` | Body text |
-| `--text-soft` | `#6b5a5a` | Secondary text, labels |
-| `--green` | `#2a8a3e` | Positive deltas |
-| (literal) `#c0392b` | red | Negative deltas |
-| `--line` | `#ead7d7` | Borders |
-| `--sidebar-text` | `#f1d6b8` | Tan on sidebar |
+| `--cream` | `#f5edd9` | Main page background |
+| `--cream-light` | `#faf3e0` | Subtle off-cream inner sections |
+| `--cream-soft` | `#fdf8ea` | Softest cream (cards) |
+| `--wine` | `#14181b` | **Near-black** primary action/accent (name kept for back-compat — it is NOT wine anymore) |
+| `--wine-deep` | `#000000` | Darkest / hover |
+| `--wine-soft` | `#fdf3c1` | Yellow-soft badge backgrounds |
+| `--wine-border` | `#f0d460` | Mid-yellow borders |
+| `--accent` | `#f5d44e` | Accent yellow (buttons, number badges, chart fill) |
+| `--accent-soft` | `#fae987` | Lighter yellow |
+| `--text` | `#14181b` | Body text |
+| `--text-soft` | `#6b6b6b` | Secondary text/labels |
+| `--text-on-dark` | `#f5edd9` | Cream text on dark cards |
+| `--line` | `rgba(20,24,27,0.08)` | Borders |
+| `--line-soft` | `rgba(20,24,27,0.04)` | Faint borders |
+| `--green` | `#16a34a` | Positive deltas |
+| `--sidebar-text` | `#4b4b4b` | Sidebar nav text |
+| `--sidebar-text-soft` | `#9a9a9a` | Muted sidebar text |
 
-**Yield (only on login.html):**
+Negative deltas use a literal red (`#dc2626`-ish / `#c0392b`). Dark cards (like `.hero-attention`) use white text with translucency.
 
-- Background: `#0f172a` (slate-900)
-- Logo bars: `#34d399`, `#6ee7b7`, `#a7f3d0` (emerald gradient)
-- Text: `#e2e8f0` headings / `#94a3b8` subtle
+**Login panel only** (`#0f172a` slate with emerald glows `#34d399`/`#6ee7b7`) — this is Yieldbase's own brand and is deliberately different from the in-app theme.
 
 ### Typography
-
-Google Fonts, loaded in every page's `<head>`:
-
-- **Playfair Display** (500, 600, 700) — serif. Used for: page titles (h1), KPI values, "STRIK" wordmark, card titles, hero greeting, hero/omzet numbers.
-- **Inter** (400, 500, 600, 700) — sans-serif. Used for everything else: body text, labels, buttons, nav.
-
-Page title (`.page-title`): 34px Playfair 700.
-KPI value (`.kpi-value`): 40px Playfair 700, wine, tight letter-spacing.
-Omzet hero number (`.omzet-hero-value`): 52px Playfair 700.
+Loaded in every page `<head>`: **Inter** (400–700) and **Playfair Display** (500–700).
+- **Inter** is the workhorse — nearly everything: nav, body, labels, buttons, KPI values, page titles, wordmark.
+- **Playfair Display** survives in only two spots after the restyle: the dashboard greeting **"Hallo Daan,"** (`.insight-greeting`) and the login **`.login-tagline`**. Don't reach for Playfair elsewhere without checking with Daan.
 
 ### Layout
+- App is a 2-column grid: **`220px sidebar | 1fr main`**.
+- Sidebar is cream-matching (not dark): `YIELDBASE` wordmark + a **3-bar logo mark** (ascending bars in grey→dark `#9a9a9a / #4b4b4b / #14181b`), the nav, and a user chip at the bottom.
+- Main content flows vertically (flex column) with generous gaps.
+- KPI cards: `repeat(4, 1fr)`. Store tabs: `repeat(5, 1fr)`. Hero row: insight + attention side by side.
+- Cards: `border-radius ~14–18px`, `1px solid var(--line)`, light backgrounds; hover lifts ~3px with a soft shadow.
+- **Responsive:** media queries collapse the grids on narrower screens (Daan reported the site was too small on another computer, so responsiveness matters — test it).
 
-- App is a 2-column grid: `220px sidebar | 1fr main`
-- Main content uses `padding: 22px 36px 16px` with vertical flow (flex column, gap 18px)
-- KPI cards are `grid-template-columns: repeat(4, 1fr)`, gap 16px, min-height 200px
-- Store tabs are `grid-template-columns: repeat(5, 1fr)`, gap 12px
-- Cards use `border-radius: 14–18px`, `1px solid var(--line)` border, white background
+### Key components / classes
+- `.client-pill` — white chip next to a page title showing "Strik Patisserie".
+- `.store-tabs` / `.store-tab` — equal-width grid, vertical icon + label; `.active` = dark fill.
+- `.hero-row`, `.hero-insight`, `.hero-attention` — the dashboard's two top cards.
+- `.attention-item` (`.high/.medium/.low`), `.attention-item-num` (yellow numbered circle), `.attention-item-body`, `.attention-cta`.
+- `.kpi-card` / `.kpi-card.kpi-link` / `.kpi-arrow` / `.kpi-value`.
+- `.omzet-hero` / `.omzet-hero-value` / `.omzet-hero-delta.up|.down` — big-number block reused on every detail page.
+- `.cta-banner` — dark gradient CTA (on omzet.html, between hero number and chart).
+- `.card`, `.table` (`.num`, `.num.up/.down`, `.rank-top`), `.hour-bar-track` / `.hour-bar-fill`.
+- `.user-menu` / `.user-dropdown` — sidebar logout. `.back-link` — "← Terug naar dashboard".
 
-### Components / patterns
+## Sidebar navigation (current)
+Identical on every logged-in page. Order:
+1. **Dashboard** → `index.html`
+2. **Analyses** → `analyses.html`
+3. **Recepturen** → `#` (placeholder)
+4. **Rapportages** → `#` (placeholder)
+5. **Instellingen** → `#` (placeholder)
 
-- **`.client-banner`** — small wine pill at top of main area showing `KLANT · Strik Patisserie`
-- **`.kpi-card`** — base card. `.kpi-card.selected` adds wine border. `.kpi-link` makes it an anchor with hover lift.
-- **`.kpi-arrow`** — chevron circle top-right. `.kpi-arrow.filled` = solid wine background.
-- **`.kpi-hint`** — the "Klik om details te zien" microcopy (only on Omzet card)
-- **`.hero-insight`** — cream-light card with greeting + intro + bullets + closing
-- **`.hero-bullets li::before`** — small wine dot as bullet
-- **`.store-tabs` / `.store-tab`** — full-width grid, equal cells, vertical icon + label
-- **`.omzet-hero`** — big-number block used on every detail page (omzet, klanten, besteding, retouren)
-- **`.omzet-hero-delta.up` / `.down`** — pill with green/red delta
-- **`.card`** — generic white card with title/sub/content
-- **`.table`** — shared table styling, supports `.num`, `.num.up`, `.num.down`, `.rank-top` for top 3 rank
-- **`.hour-bar-track` / `.hour-bar-fill`** — small bar visualization in hours tables
-- **`.cta-banner`** — wine-gradient CTA section (currently only on omzet.html)
-- **`.user-menu` / `.user-dropdown`** — sidebar bottom logout dropdown
-- **`.back-link`** — `← Terug naar dashboard` link on detail pages
+(Older "Analyse omzet" / "Assortiment" items are gone.) When adding a nav item, add it to **all** logged-in pages — there's no shared template.
 
 ## Data conventions
+All data is **fictitious** but calibrated so per-store numbers sum to the Totaal (Totaal is the source of truth).
 
-All data is **fictitious** but calibrated so per-store numbers sum to the Totaal.
-
-### Reference week: **14 apr – 20 apr 2025** vs. **15 apr – 21 apr 2024**
-
-### Per-store totals (must always sum correctly):
+### Reference week: **14 apr – 20 apr 2025** vs **15 apr – 21 apr 2024**
 
 | Winkel | Omzet | Klanten | Retouren |
 |---|---|---|---|
@@ -212,116 +206,63 @@ All data is **fictitious** but calibrated so per-store numbers sum to the Totaal
 | **Webshop** (in Totaal only) | € 9.210 (+12,3%) | 640 (+10,2%) | € 66 (+6,1%) |
 | **Totaal** | **€ 67.450 (+6,8%)** | **4.895 (+5,6%)** | **€ 482 (+4,2%)** |
 
-Besteding per klant (weighted avg): 67.450 / 4.895 = **€ 13,78** (+1,1%)
+Besteding per klant (weighted avg): 67.450 / 4.895 = **€ 13,78 (+1,1%)**.
+Per-store besteding: Ziekerstraat €13,77 · Heyendaal €13,43 · Lent €13,90 · Daalseweg €13,68.
 
-### Per-store besteding:
-- Ziekerstraat €13,77 (+1,4%) · Heyendaal €13,43 (+0,6%) · Lent €13,90 (+2,1%) · Daalseweg €13,68 (−0,3%)
+**Store ratios for scaling** (omzet/klanten/retouren share): Ziekerstraat 28,8% · Heyendaal 23,9% · Lent 19,1% · Daalseweg 14,6% · Webshop 13,7% (Totaal only).
 
-### Store ratios for scaling (omzet/klanten/retouren-aandeel):
-- Ziekerstraat 28,8% / Heyendaal 23,9% / Lent 19,1% / Daalseweg 14,6%
-- Webshop 13,7% (only contributes to Totaal, never shown standalone)
+- **Daily pattern:** Saturday busiest (~21% of week), Sunday slowest, weekdays rise from Monday.
+- **Hourly klanten:** open 07:00–18:00; peaks at 09:00–11:00 (highest) and 12:00–14:00, tapering after 15:00.
+- **Hourly besteding:** inverse — highest 14:00–15:00 (~€16,40, cakes/special orders), lowest 07:00–08:00 (~€10,20, bread runs).
+- **Top 10 products (omzet.html):** Strikgebakje, Slagroomtaart 8p, Bruin desem, Tompouce, Croissant, Appelflap, Wit casino, Eclair, Bonbondoos 9 st., Worstenbroodje.
+- **Top retour products (retouren.html):** Slagroomtaart 8p, Tompouce, Bruin desem, Strikgebakje, Worstenbroodje, Croissant, Bonbondoos, Wit casino, Appelflap, Eclair — each with stuks, waarde, reden ("Niet opgehaald", "Te zacht / niet vers", "Verkeerd brood").
 
-### Daily distribution pattern:
-Saturday is always the busiest day (~21% of the week). Sunday is the slowest. Weekday curve rises gradually from Monday.
-
-### Hourly distribution (klanten, totaal weekly = 4.895):
-Bakery curve with three peaks:
-- Morning bread + coffee peak: 09:00–11:00 (highest)
-- Lunch peak: 12:00–14:00
-- Afternoon: tapers off after 15:00, closes 18:00
-- Opening hours: 07:00–18:00
-
-### Hourly besteding pattern:
-Inverse of klanten — highest spend in **14:00–15:00** (cake / special orders, ~€16,40), lowest in **07:00–08:00** (bread runs, ~€10,20).
-
-### Top 10 products (in `omzet.html`):
-Strikgebakje, Slagroomtaart 8p, Bruin desem, Tompouce, Croissant, Appelflap, Wit casino, Eclair, Bonbondoos 9 st., Worstenbroodje. Each has aantal, omzet, marge, YoY%.
-
-Per-store views scale aantal + omzet by the store's ratio.
-
-### Top retour products (in `retouren.html`):
-Slagroomtaart 8p, Tompouce, Bruin desem, Strikgebakje, Worstenbroodje, Croissant, Bonbondoos, Wit casino, Appelflap, Eclair. Each has stuks, waarde, reden ("Niet opgehaald", "Te zacht", etc.).
-
-## Auth
-
-**Client-side only. NOT real security.** This is disclosed to Daan; when ready for real users we'll add a backend.
-
-- **Credentials:** `daan@software.nl` / `daan123` (hardcoded in `auth.js`)
-- **Storage:** `localStorage` key `strik_auth` → `{email, ts}`
-- **Guard:** Inline `<script>` in `<head>` of every protected page redirects to `login.html` if not authenticated. Runs before render so there's no flash. Pattern:
+## Auth (demo only — NOT real security)
+Disclosed to Daan. When real users arrive, swap for a backend.
+- **Credentials:** `daan@software.nl` / `daan123` (hardcoded in `auth.js`, visible to anyone — no real secrets are stored).
+- **Storage:** `localStorage` key `strik_auth` → `{email, ts}`.
+- **Guard:** inline `<script>` in every protected page `<head>` redirects to `login.html` before render if not authenticated:
   ```js
-  (function() {
-    try {
-      var raw = localStorage.getItem('strik_auth');
-      if (!raw || JSON.parse(raw).email !== 'daan@software.nl') {
-        window.location.replace('login.html');
-      }
-    } catch (e) { window.location.replace('login.html'); }
-  })();
+  (function(){ try {
+    var raw = localStorage.getItem('strik_auth');
+    if (!raw || JSON.parse(raw).email !== 'daan@software.nl') window.location.replace('login.html');
+  } catch(e){ window.location.replace('login.html'); } })();
   ```
-- **Inverse guard:** `login.html` redirects to `index.html` if already logged in.
-- **Logout:** click the user chip in the sidebar bottom → dropdown with "Uitloggen" → clears localStorage → redirects to login.
-- **Manual unlock for dev:** in browser console run `localStorage.setItem('strik_auth', JSON.stringify({email:'daan@software.nl'}))` then refresh.
+- **Logout:** user chip in sidebar bottom → dropdown "Uitloggen" → clears localStorage → back to login.
+- **Dev unlock:** in console `localStorage.setItem('strik_auth', JSON.stringify({email:'daan@software.nl'}))` then refresh.
 
-## Sidebar navigation
+## How store-switching works
+- **Detail pages** (`omzet`, `klanten`, `besteding`, `retouren`, `analyse-uitverkocht`) are self-contained: each ships its own `STORES` data object inline, a Chart.js chart, and a `renderStore(key)` that updates the hero number/delta, calls `chart.update()`, re-renders the page's table, and toggles `.active`. Initial state is always `totaal`. Page-local — does not sync with the dashboard's selection.
+- **Dashboard** uses a separate `STORES` object in `app.js` that adds, per store, the hero intro line + 4 bullets + closing, alongside the 4 KPI values.
 
-Identical across all logged-in pages. Order:
+## Style preferences (don't deviate without asking)
+- **Dutch number format:** `€ 67.450` (dot = thousands), `€ 13,78` (comma = decimal). Use `toLocaleString('nl-NL')` or manual replace.
+- **Deltas:** `↑ +X,Y%` green / `↓ −X,Y%` red.
+- **Headings sentence-case Dutch** ("Omzet per dag", not Title Case).
+- **No emoji in UI** unless explicitly requested.
+- **Subtle hover motion** — cards lift ~3px with a soft shadow.
+- Keep it simple but not empty (the perennial balance).
 
-1. **Dashboard** → `index.html`
-2. **Analyse omzet** → `#` (placeholder — not built yet, but CTA on omzet.html points here)
-3. **Assortiment** → `#`
-4. **Recepturen** → `#`
-5. **Rapportages** → `#`
-6. **Instellingen** → `#`
-
-When adding a new nav item, **add it to every page's sidebar** (index, omzet, klanten, besteding, retouren). There's no shared template — sidebar HTML is duplicated per file.
-
-## How store-switching works (per detail page)
-
-Each detail page (`omzet`, `klanten`, `besteding`, `retouren`) is self-contained: it ships its own `STORES` data object inline in a `<script>` block, plus a Chart.js chart and a `renderStore(key)` function. Clicking a `.store-tab` calls `renderStore(tab.dataset.store)` which:
-
-1. Updates the hero number + delta
-2. Calls `chart.update()` with new daily data
-3. Re-renders the page-specific table (top products, peak hours, etc.)
-4. Toggles `.active` class on the clicked tab
-
-Initial state is always `renderStore('totaal')`.
-
-The **dashboard** (`index.html`) uses a separate `STORES` object in `app.js` that includes the hero intro + bullets + closing per store, in addition to the 4 KPI values.
-
-## Style preferences observed (don't deviate without asking)
-
-- **Numbers always in Dutch format:** `€ 67.450` (dot for thousands), `€ 13,78` (comma for decimal). Use `toLocaleString('nl-NL')` or manual `.replace('.', ',')`.
-- **Deltas as `↑ +X,Y%` or `↓ −X,Y%`** with green/red text.
-- **Headings sentence-case Dutch** (e.g. "Omzet per dag", not "Omzet Per Dag")
-- **No emoji in UI text** unless explicitly requested.
-- **Hover states should have subtle motion** — KPI cards lift 3px + soft wine shadow on hover.
-- **Use Playfair for "the headline number"** — KPI value, hero value, card title. Inter for everything else.
-
-## What's been built vs. todo
+## What's built vs. todo
 
 ### Built ✅
-- Login screen (Yield brand) with client-side auth
-- Dashboard with store switcher, hero insight (Hallo Daan + intro + bullets + closing), 4 clickable KPI cards
-- 4 detail pages (Omzet, Klanten, Besteding, Retouren), each with: store tabs, hero number, line chart vs. last year, specific table (top products / peak hours / hours by spend / top retour products)
-- "Analyse omzet" sidebar item (visual only, doesn't link anywhere yet)
-- CTA banner on omzet.html pointing to Analyse omzet
+- Yieldbase login + client-side auth gate
+- Dashboard: store switcher, hero insight (Hallo Daan + bullets), top-3 numbered aandachtspunten, 4 clickable KPI cards
+- 4 KPI detail pages (Omzet / Klanten / Besteding / Retouren) — store tabs, hero number, line chart vs last year, page-specific table
+- Analyses landing (2×2 cards) + the "uitverkocht" deep-dive
+- Cream/black/yellow restyle, Yieldbase + Strik Patisserie branding, responsive passes
 - Logout flow
 
-### TODO (mentioned but not built)
-- **Analyse omzet** page (CTA target — should surface opportunities to grow omzet: high-margin underperformers, slow hours, cross-sell suggestions, etc.)
-- **Assortiment** page (product catalogue with margin analysis — serves the "welke producten het duurste zijn / waar liggen kansen" goal from the original brief)
-- **Recepturen, Rapportages, Instellingen** pages
-- **Real backend auth** (Auth0 / Supabase / Firebase) — currently demo gate only
-- **Real POS data integration**
-- **Webshop** as a 6th selectable tab? Currently it's folded silently into Totaal. Daan may want to expose it later.
+### TODO (mentioned, not built)
+- Recepturen, Rapportages, Instellingen pages (nav placeholders only)
+- Detail content behind the other 3 analyses cards (margins, retouren, meer omzet) — only "uitverkocht" is a full page
+- Real backend auth + real POS data
+- Possibly expose Webshop as a 6th selectable tab (currently folded into Totaal)
 
-## When making changes
-
-1. **Always bump `?v=N`** across every CSS/JS reference if you touched a shared file (styles.css, app.js, auth.js). Use a single replace_all per file.
-2. **Match the existing Dutch tone** — informal "je/jouw", short, conversational.
-3. **Per-store numbers must still sum** to Totaal after edits. The table in "Per-store totals" above is the source of truth.
-4. **Sidebar nav must stay in sync** across all 5 logged-in pages (index, omzet, klanten, besteding, retouren).
-5. **Don't commit unless asked.** Daan has been telling me when to push.
-6. **Don't introduce a build step or framework.** This is intentionally a no-tooling static site so Daan can read/edit the files himself eventually.
-7. **After pushing**, give Daan the live URL with a fresh `?something=N` query so his browser doesn't cache.
+## When making changes — checklist
+1. **Bump `?v=N`** across every HTML file if you touched any shared file (use the `for f in *.html; do sed ...` one-liner).
+2. **Match the Dutch tone** — informal, short, conversational.
+3. **Per-store numbers must still sum** to Totaal (table above is source of truth).
+4. **Sidebar nav must stay in sync** across all logged-in pages (no shared template).
+5. **Don't introduce a build step or framework** — intentional, so Daan can edit files himself.
+6. **After pushing**, hand Daan the live URL with a fresh throwaway query (`?x=N`) so his browser doesn't serve cached HTML.
